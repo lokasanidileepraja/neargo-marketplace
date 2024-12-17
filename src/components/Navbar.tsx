@@ -24,8 +24,11 @@ const Navbar = () => {
           <Button variant="ghost" size="icon" onClick={() => navigate("/notifications")}>
             <Bell className="h-5 w-5" />
           </Button>
-          <Button variant="ghost" size="icon" onClick={() => navigate("/cart")}>
+          <Button variant="ghost" size="icon" onClick={() => navigate("/cart")} className="relative">
             <ShoppingCart className="h-5 w-5" />
+            <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center">
+              1
+            </span>
           </Button>
           <Button variant="ghost" size="icon" onClick={() => navigate("/profile")}>
             <User className="h-5 w-5" />
