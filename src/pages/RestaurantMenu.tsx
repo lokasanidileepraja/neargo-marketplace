@@ -3,10 +3,7 @@ import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
-
-// Import the restaurants data from FoodDelivery.tsx
-// In a real app, this would be fetched from an API
-import { restaurants } from "./FoodDelivery";
+import { restaurants } from "@/data/restaurants";
 
 const RestaurantMenu = () => {
   const { id } = useParams();
