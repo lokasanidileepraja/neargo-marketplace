@@ -13,14 +13,14 @@ const CategoryCard = ({ title, icon, description, path }: CategoryCardProps) => 
 
   return (
     <Card 
-      className="p-6 cursor-pointer hover:shadow-lg transition-shadow"
+      className="p-6 cursor-pointer hover:shadow-lg transition-shadow bg-white"
       onClick={() => navigate(path)}
     >
       <div className="flex flex-col items-center text-center gap-4">
         <div className="p-4 bg-primary/10 rounded-full">
           {icon}
         </div>
-        <h3 className="text-lg font-semibold">{title}</h3>
+        <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
         <p className="text-sm text-gray-500">{description}</p>
       </div>
     </Card>
