@@ -20,8 +20,10 @@ const CategoryCard = ({ title, icon, description, path }: CategoryCardProps) => 
         <div className="p-4 bg-primary/10 rounded-full">
           {icon}
         </div>
-        <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
-        <p className="text-sm text-gray-500">{description}</p>
+        <div className="space-y-2">
+          <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
+          <p className="text-sm text-gray-500">{description}</p>
+        </div>
       </div>
     </Card>
   );
