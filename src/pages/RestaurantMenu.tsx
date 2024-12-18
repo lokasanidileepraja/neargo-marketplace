@@ -4,10 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { restaurants } from "@/data/restaurants";
+import { useToast } from "@/hooks/use-toast";
+import Navbar from "@/components/Navbar";
 
 const RestaurantMenu = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { toast } = useToast();
   
   const restaurant = restaurants.find((r) => r.id === Number(id));
 
@@ -15,8 +18,17 @@ const RestaurantMenu = () => {
     return <div>Restaurant not found</div>;
   }
 
+  const handleAddToCart = (item: { name: string; price: number }) => {
+    // In a real app, this would dispatch to a cart state manager
+    toast({
+      title: "Added to cart",
+      description: `${item.name} has been added to your cart.`,
+    });
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
+      <Navbar />
       <div className="container py-8">
         <Breadcrumb>
           <BreadcrumbList>
@@ -63,7 +75,12 @@ const RestaurantMenu = () => {
                       ${item.price.toFixed(2)}
                     </p>
                   </div>
-                  <Button className="w-full">Add to Cart</Button>
+                  <Button 
+                    className="w-full"
+                    onClick={() => handleAddToCart(item)}
+                  >
+                    Add to Cart
+                  </Button>
                 </div>
               </Card>
             ))}

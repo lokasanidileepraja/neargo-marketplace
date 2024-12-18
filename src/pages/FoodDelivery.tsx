@@ -4,12 +4,14 @@ import { useNavigate } from "react-router-dom";
 import RestaurantCard from "@/components/RestaurantCard";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { restaurants } from "@/data/restaurants";
+import Navbar from "@/components/Navbar";
 
 const FoodDelivery = () => {
   const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Navbar />
       <div className="container py-8">
         <Breadcrumb>
           <BreadcrumbList>
