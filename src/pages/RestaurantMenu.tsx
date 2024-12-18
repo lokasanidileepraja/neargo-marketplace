@@ -1,9 +1,8 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
-import { restaurants } from "@/data/restaurants";
+import { kiranaShops } from "@/data/kiranaShops";
 import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
 
@@ -12,14 +11,13 @@ const RestaurantMenu = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   
-  const restaurant = restaurants.find((r) => r.id === Number(id));
+  const shop = kiranaShops.find((r) => r.id === Number(id));
 
-  if (!restaurant) {
-    return <div>Restaurant not found</div>;
+  if (!shop) {
+    return <div>Shop not found</div>;
   }
 
   const handleAddToCart = (item: { name: string; price: number }) => {
-    // In a real app, this would dispatch to a cart state manager
     toast({
       title: "Added to cart",
       description: `${item.name} has been added to your cart.`,
@@ -37,13 +35,11 @@ const RestaurantMenu = () => {
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink onClick={() => navigate("/food-delivery")}>
-                Food Delivery
-              </BreadcrumbLink>
+              <BreadcrumbLink onClick={() => navigate("/food-delivery")}>Daily Groceries</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage>{restaurant.name}</BreadcrumbPage>
+              <BreadcrumbPage>{shop.name}</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
@@ -51,17 +47,17 @@ const RestaurantMenu = () => {
         <div className="mt-8 space-y-8">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold">{restaurant.name}</h1>
-              <p className="text-gray-500 mt-2">{restaurant.description}</p>
+              <h1 className="text-3xl font-bold">{shop.name}</h1>
+              <p className="text-gray-500 mt-2">{shop.description}</p>
             </div>
             <Button variant="outline" onClick={() => navigate("/food-delivery")}>
               <ArrowLeft className="mr-2" />
-              Back to Restaurants
+              Back to Shops
             </Button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {restaurant.menu.map((item) => (
+            {shop.items.map((item) => (
               <Card key={item.id} className="overflow-hidden">
                 <img
                   src={item.image}

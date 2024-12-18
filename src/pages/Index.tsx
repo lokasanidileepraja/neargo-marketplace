@@ -1,4 +1,4 @@
-import { ShoppingBag, Utensils, Package, Pill } from "lucide-react";
+import { ShoppingBag, Store, Package, Pill } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import SearchBar from "@/components/SearchBar";
 import CategoryCard from "@/components/CategoryCard";
@@ -6,9 +6,9 @@ import CategoryCard from "@/components/CategoryCard";
 const Index = () => {
   const categories = [
     {
-      title: "Food Delivery",
-      icon: <Utensils className="h-6 w-6 text-primary" />,
-      description: "Order from your favorite restaurants",
+      title: "Daily Groceries",
+      icon: <Store className="h-6 w-6 text-primary" />,
+      description: "Fresh groceries from your local Kirana shops",
       path: "/food-delivery"
     },
     {

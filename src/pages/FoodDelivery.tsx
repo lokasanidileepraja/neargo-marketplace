@@ -1,9 +1,9 @@
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import RestaurantCard from "@/components/RestaurantCard";
+import KiranaShopCard from "@/components/KiranaShopCard";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
-import { restaurants } from "@/data/restaurants";
+import { kiranaShops } from "@/data/kiranaShops";
 import Navbar from "@/components/Navbar";
 
 const FoodDelivery = () => {
@@ -20,14 +20,14 @@ const FoodDelivery = () => {
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage>Food Delivery</BreadcrumbPage>
+              <BreadcrumbPage>Daily Groceries</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
 
         <div className="mt-8 space-y-8">
           <div className="flex items-center justify-between">
-            <h1 className="text-3xl font-bold">Restaurants Near You</h1>
+            <h1 className="text-3xl font-bold">Kirana Shops Near You</h1>
             <Button variant="outline" onClick={() => navigate("/")}>
               <ArrowLeft className="mr-2" />
               Back to Home
@@ -35,11 +35,11 @@ const FoodDelivery = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {restaurants.map((restaurant) => (
-              <RestaurantCard
-                key={restaurant.id}
-                restaurant={restaurant}
-                onViewMenu={() => navigate(`/food-delivery/${restaurant.id}`)}
+            {kiranaShops.map((shop) => (
+              <KiranaShopCard
+                key={shop.id}
+                shop={shop}
+                onViewItems={() => navigate(`/food-delivery/${shop.id}`)}
               />
             ))}
           </div>
