@@ -6,6 +6,7 @@ import OrderConfirmation from "@/pages/OrderConfirmation";
 import FoodDelivery from "@/pages/FoodDelivery";
 import RestaurantMenu from "@/pages/RestaurantMenu";
 import { Toaster } from "@/components/ui/toaster";
+import Navbar from "@/components/Navbar";
 
 function App() {
   return (
