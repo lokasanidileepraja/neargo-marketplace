@@ -10,25 +10,29 @@ import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/Navbar";
 import { shops } from "@/data/shops";
 import KiranaShopCard from "@/components/KiranaShopCard";
+import { CartProvider } from "@/contexts/CartContext";
+import { useCart } from "@/contexts/CartContext";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/order-confirmation" element={<OrderConfirmation />} />
-        <Route path="/food-delivery" element={<CategoryPage title="Food Delivery" category="food-delivery" />} />
-        <Route path="/groceries" element={<CategoryPage title="Groceries" category="groceries" />} />
-        <Route path="/pharmacy" element={<CategoryPage title="Pharmacy" category="pharmacy" />} />
-        <Route path="/local-favorites" element={<CategoryPage title="Local Favorites" category="local-favorites" />} />
-        <Route path="/healthy-options" element={<CategoryPage title="Healthy Options" category="healthy-options" />} />
-        <Route path="/quick-meals" element={<CategoryPage title="Quick Meals" category="quick-meals" />} />
-        <Route path="/:category/:shopId" element={<ShopDetail />} />
-      </Routes>
-      <Toaster />
-    </Router>
+    <CartProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/order-confirmation" element={<OrderConfirmation />} />
+          <Route path="/food-delivery" element={<CategoryPage title="Food Delivery" category="food-delivery" />} />
+          <Route path="/groceries" element={<CategoryPage title="Groceries" category="groceries" />} />
+          <Route path="/pharmacy" element={<CategoryPage title="Pharmacy" category="pharmacy" />} />
+          <Route path="/local-favorites" element={<CategoryPage title="Local Favorites" category="local-favorites" />} />
+          <Route path="/healthy-options" element={<CategoryPage title="Healthy Options" category="healthy-options" />} />
+          <Route path="/quick-meals" element={<CategoryPage title="Quick Meals" category="quick-meals" />} />
+          <Route path="/:category/:shopId" element={<ShopDetail />} />
+        </Routes>
+        <Toaster />
+      </Router>
+    </CartProvider>
   );
 }
 
@@ -64,6 +68,7 @@ const ShopDetail = () => {
   const navigate = useNavigate();
   const { category, shopId } = useParams();
   const shop = shops.find(s => s.id === Number(shopId));
+  const { addItem } = useCart();
 
   if (!shop) {
     return <div>Shop not found</div>;
@@ -91,7 +96,15 @@ const ShopDetail = () => {
                   <p className="text-gray-500">{item.description}</p>
                   <div className="mt-4 flex items-center justify-between">
                     <span className="font-bold">₹{item.price}</span>
-                    <Button onClick={() => console.log('Add to cart:', item)}>
+                    <Button 
+                      onClick={() => addItem({
+                        id: item.id,
+                        name: item.name,
+                        price: item.price,
+                        image: item.image,
+                        shopId: shop.id
+                      })}
+                    >
                       Add to Cart
                     </Button>
                   </div>
