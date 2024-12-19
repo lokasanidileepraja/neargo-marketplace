@@ -1,4 +1,7 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useParams, useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import Index from "@/pages/Index";
 import Cart from "@/pages/Cart";
 import Checkout from "@/pages/Checkout";
@@ -7,7 +10,6 @@ import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/Navbar";
 import { shops } from "@/data/shops";
 import KiranaShopCard from "@/components/KiranaShopCard";
-import { useNavigate } from "react-router-dom";
 
 function App() {
   return (
