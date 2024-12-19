@@ -2,6 +2,7 @@ import { ShoppingBag, Store, Package, Pill, Heart, Leaf, Clock } from "lucide-re
 import Navbar from "@/components/Navbar";
 import SearchBar from "@/components/SearchBar";
 import CategoryCard from "@/components/CategoryCard";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   const categories = [
@@ -62,6 +63,7 @@ const Index = () => {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 };
