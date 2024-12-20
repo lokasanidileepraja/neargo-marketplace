@@ -7,16 +7,7 @@ import {
   MessageSquare,
   Settings,
 } from "lucide-react";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar";
+import { useNavigate } from "react-router-dom";
 
 const menuItems = [
   {
@@ -57,32 +48,25 @@ const menuItems = [
 ];
 
 export function AdminSidebar() {
+  const navigate = useNavigate();
+
   return (
-    <Sidebar className="fixed top-0 left-0 h-screen w-64 border-r">
-      <SidebarContent>
-        <div className="p-6">
-          <h1 className="text-2xl font-bold">NearGo Admin</h1>
-        </div>
-        <SidebarGroup>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {menuItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a
-                      href={item.href}
-                      className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
-                    >
-                      <item.icon className="h-4 w-4" />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-      </SidebarContent>
-    </Sidebar>
+    <div className="flex h-full w-full flex-col bg-white">
+      <div className="p-6">
+        <h2 className="text-lg font-semibold">Admin Dashboard</h2>
+      </div>
+      <nav className="flex-1">
+        {menuItems.map((item) => (
+          <button
+            key={item.title}
+            onClick={() => navigate(item.href)}
+            className="flex w-full items-center gap-3 px-6 py-3 text-gray-700 hover:bg-gray-100"
+          >
+            <item.icon className="h-5 w-5" />
+            <span>{item.title}</span>
+          </button>
+        ))}
+      </nav>
+    </div>
   );
 }

@@ -3,17 +3,25 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ProfileSidebar from "./ProfileSidebar";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
+import { AdminSidebar } from "./admin/AdminSidebar";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isAdminOpen, setIsAdminOpen] = useState(false);
 
   return (
     <>
       <nav className="sticky top-0 z-50 bg-white border-b border-gray-200 px-4 py-2.5">
         <div className="flex justify-between items-center max-w-7xl mx-auto">
           <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="md:hidden">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="md:hidden"
+              onClick={() => setIsAdminOpen(true)}
+            >
               <Menu className="h-6 w-6" />
             </Button>
             <h1 
@@ -48,6 +56,11 @@ const Navbar = () => {
         open={isProfileOpen}
         onClose={() => setIsProfileOpen(false)}
       />
+      <Sheet open={isAdminOpen} onOpenChange={setIsAdminOpen}>
+        <SheetContent side="left" className="p-0">
+          <AdminSidebar />
+        </SheetContent>
+      </Sheet>
     </>
   );
 };
