@@ -12,6 +12,7 @@ import { shops } from "@/data/shops";
 import KiranaShopCard from "@/components/KiranaShopCard";
 import { CartProvider } from "@/contexts/CartContext";
 import { useCart } from "@/contexts/CartContext";
+import AdminDashboard from "@/pages/admin/Dashboard";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/healthy-options" element={<CategoryPage title="Healthy Options" category="healthy-options" />} />
           <Route path="/quick-meals" element={<CategoryPage title="Quick Meals" category="quick-meals" />} />
           <Route path="/:category/:shopId" element={<ShopDetail />} />
+          <Route path="/admin" element={<AdminDashboard />} />
         </Routes>
         <Toaster />
       </Router>
