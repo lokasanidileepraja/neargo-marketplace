@@ -55,6 +55,16 @@ const statsCards = [
   },
 ];
 
+const chartConfig = {
+  revenue: {
+    label: "Revenue",
+    theme: {
+      light: "#8884d8",
+      dark: "#8884d8",
+    },
+  },
+};
+
 export default function AdminDashboard() {
   const [mounted, setMounted] = useState(false);
 
@@ -97,7 +107,7 @@ export default function AdminDashboard() {
               </CardHeader>
               <CardContent>
                 <div className="h-[300px]">
-                  <ChartContainer>
+                  <ChartContainer config={chartConfig}>
                     <ResponsiveContainer width="100%" height="100%">
                       <AreaChart data={data}>
                         <XAxis dataKey="name" />
