@@ -18,9 +18,9 @@ const Navbar = () => {
           <div className="flex items-center gap-2">
             <Button 
               variant="ghost" 
-              size="icon" 
-              className="md:hidden"
+              size="icon"
               onClick={() => setIsAdminOpen(true)}
+              className="relative"
             >
               <Menu className="h-6 w-6" />
             </Button>
