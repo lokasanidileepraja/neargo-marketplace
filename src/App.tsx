@@ -11,11 +11,13 @@ import Reviews from "@/pages/admin/Reviews";
 import Documents from "@/pages/admin/Documents";
 import Settings from "@/pages/admin/Settings";
 import Pages from "@/pages/admin/Pages";
+import Index from "@/pages/Index";
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<Index />} />
         <Route path="/admin/*" element={
           <AdminLayout>
             <Routes>
