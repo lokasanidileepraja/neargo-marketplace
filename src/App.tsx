@@ -14,6 +14,7 @@ import FoodDelivery from "@/pages/FoodDelivery";
 import ShopDetail from "@/pages/ShopDetail";
 import Cart from "@/pages/Cart";
 import Checkout from "@/pages/Checkout";
+import OrderSuccess from "@/pages/OrderSuccess";
 import { CartProvider } from "@/contexts/CartContext";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/" element={<Index />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/order-success" element={<OrderSuccess />} />
           <Route path="/food-delivery" element={<FoodDelivery />} />
           <Route path="/food-delivery/:id" element={<ShopDetail />} />
           <Route path="/groceries" element={<FoodDelivery />} />
