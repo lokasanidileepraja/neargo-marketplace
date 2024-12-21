@@ -2,6 +2,7 @@ import { AdminHeader } from "@/components/admin/AdminHeader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import BackButton from "@/components/BackButton";
+import AIChat from "@/components/AIChat";
 import {
   Table,
   TableBody,
@@ -59,6 +60,11 @@ export default function Pages() {
         <Button>
           + Add Page
         </Button>
+      </div>
+
+      <div className="bg-white p-4 rounded-lg shadow">
+        <h2 className="text-xl font-semibold mb-4 text-black">AI Assistant</h2>
+        <AIChat />
       </div>
 
       <div className="flex justify-between gap-4">
