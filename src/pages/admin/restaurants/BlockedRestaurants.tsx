@@ -1,50 +1,37 @@
-import { AdminHeader } from "@/components/admin/AdminHeader";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
-import BackButton from "@/components/BackButton";
+import { Table } from "@/components/ui/table";
+import AdminHeader from "@/components/admin/AdminHeader";
 
-export default function BlockedRestaurants() {
+const BlockedRestaurants = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <AdminHeader />
-      <main className="container mx-auto py-8 px-4">
-        <BackButton to="/admin/restaurants" label="Back to Restaurants" />
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">Blocked Restaurants</h1>
-        </div>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Blocked Restaurant List</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Restaurant Name</TableHead>
-                  <TableHead>Blocked Date</TableHead>
-                  <TableHead>Reason</TableHead>
-                  <TableHead>Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                <TableRow>
-                  <TableCell>Tasty Bites</TableCell>
-                  <TableCell>2024-03-10</TableCell>
-                  <TableCell>Multiple customer complaints</TableCell>
-                  <TableCell>
-                    <div className="flex gap-2">
-                      <Button variant="outline" size="sm">View Details</Button>
-                      <Button variant="default" size="sm">Unblock</Button>
-                    </div>
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
-      </main>
+    <div className="p-6">
+      <AdminHeader 
+        title="Blocked Restaurants" 
+        description="View and manage blocked restaurants"
+      />
+      <div className="rounded-md border mt-6">
+        <Table>
+          <thead>
+            <tr>
+              <th>Restaurant Name</th>
+              <th>Blocked Date</th>
+              <th>Reason</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Sample Restaurant 2</td>
+              <td>2024-03-20</td>
+              <td>Policy Violation</td>
+              <td>
+                <button className="text-blue-600 hover:text-blue-800">Unblock</button>
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+      </div>
     </div>
   );
-}
+};
+
+export default BlockedRestaurants;
