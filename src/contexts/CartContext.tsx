@@ -17,6 +17,7 @@ interface CartContextType {
   updateQuantity: (id: number, quantity: number) => void;
   clearCart: () => void;
   total: number;
+  itemCount: number;
   addToCart: (item: Omit<CartItem, 'quantity'>) => void;
 }
 
@@ -66,8 +67,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   const total = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
 
-  // Add addToCart as an alias for addItem for backward compatibility
   const addToCart = addItem;
 
   return (
@@ -79,6 +80,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         updateQuantity,
         clearCart,
         total,
+        itemCount,
         addToCart
       }}
     >

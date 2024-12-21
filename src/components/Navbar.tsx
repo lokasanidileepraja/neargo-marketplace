@@ -1,67 +1,31 @@
-import { ShoppingCart, Menu, Bell, User } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import ProfileSidebar from "./ProfileSidebar";
-import { Sheet, SheetContent } from "@/components/ui/sheet";
-import { AdminSidebar } from "./admin/AdminSidebar";
+import { useCart } from "@/contexts/CartContext";
 
 const Navbar = () => {
-  const navigate = useNavigate();
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const [isAdminOpen, setIsAdminOpen] = useState(false);
+  const { itemCount } = useCart();
 
   return (
-    <>
-      <nav className="sticky top-0 z-50 bg-white border-b border-gray-200 px-4 py-2.5">
-        <div className="flex justify-between items-center max-w-7xl mx-auto">
-          <div className="flex items-center gap-2">
-            <Button 
-              variant="ghost" 
-              size="icon"
-              onClick={() => setIsAdminOpen(true)}
-              className="relative"
-            >
-              <Menu className="h-6 w-6" />
-            </Button>
-            <h1 
-              className="text-2xl font-bold text-primary cursor-pointer"
-              onClick={() => navigate("/")}
-            >
-              NearGo
-            </h1>
-          </div>
-          
-          <div className="flex items-center gap-4">
-            <Button variant="ghost" size="icon" onClick={() => navigate("/notifications")}>
-              <Bell className="h-5 w-5" />
-            </Button>
-            <Button variant="ghost" size="icon" onClick={() => navigate("/cart")} className="relative">
+    <nav className="bg-white shadow-sm">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          <Link to="/" className="text-xl font-bold">
+            DeliveryApp
+          </Link>
+          <Link to="/cart">
+            <Button variant="ghost" className="relative">
               <ShoppingCart className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                1
-              </span>
+              {itemCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  {itemCount}
+                </span>
+              )}
             </Button>
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              onClick={() => setIsProfileOpen(true)}
-            >
-              <User className="h-5 w-5" />
-            </Button>
-          </div>
+          </Link>
         </div>
-      </nav>
-      <ProfileSidebar 
-        open={isProfileOpen}
-        onClose={() => setIsProfileOpen(false)}
-      />
-      <Sheet open={isAdminOpen} onOpenChange={setIsAdminOpen}>
-        <SheetContent side="left" className="p-0">
-          <AdminSidebar />
-        </SheetContent>
-      </Sheet>
-    </>
+      </div>
+    </nav>
   );
 };
 
