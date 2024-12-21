@@ -1,37 +1,57 @@
-import { Table } from "@/components/ui/table";
 import { AdminHeader } from "@/components/admin/AdminHeader";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
+import BackButton from "@/components/BackButton";
 
-const BlockedRestaurants = () => {
+export default function BlockedRestaurants() {
+  const handleUnblock = (id: string) => {
+    console.log("Unblocking restaurant:", id);
+    // Add unblock logic here
+  };
+
   return (
-    <div className="p-6">
+    <div className="min-h-screen bg-gray-50">
       <AdminHeader 
         title="Blocked Restaurants" 
-        description="View and manage blocked restaurants"
+        description="Manage restaurants that have been blocked from the platform" 
       />
-      <div className="rounded-md border mt-6">
-        <Table>
-          <thead>
-            <tr>
-              <th>Restaurant Name</th>
-              <th>Blocked Date</th>
-              <th>Reason</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Sample Restaurant 2</td>
-              <td>2024-03-20</td>
-              <td>Policy Violation</td>
-              <td>
-                <button className="text-blue-600 hover:text-blue-800">Unblock</button>
-              </td>
-            </tr>
-          </tbody>
-        </Table>
-      </div>
+      <main className="container mx-auto py-8 px-4">
+        <BackButton to="/admin/restaurants" label="Back to Restaurants" />
+        <Card className="mt-8">
+          <CardHeader>
+            <CardTitle>Blocked Restaurants List</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Restaurant Name</TableHead>
+                  <TableHead>Blocked Date</TableHead>
+                  <TableHead>Reason</TableHead>
+                  <TableHead>Actions</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow>
+                  <TableCell>Pizza Palace</TableCell>
+                  <TableCell>2024-03-15</TableCell>
+                  <TableCell>Multiple customer complaints</TableCell>
+                  <TableCell>
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => handleUnblock("1")}
+                    >
+                      Unblock
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
+      </main>
     </div>
   );
-};
-
-export default BlockedRestaurants;
+}
