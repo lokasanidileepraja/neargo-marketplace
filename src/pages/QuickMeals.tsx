@@ -6,9 +6,9 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbP
 import { shops } from "@/data/shops";
 import Navbar from "@/components/Navbar";
 
-const FoodDelivery = () => {
+const QuickMeals = () => {
   const navigate = useNavigate();
-  const foodDeliveryShops = shops.filter(shop => shop.category === "food-delivery");
+  const quickMealShops = shops.filter(shop => shop.category === "quick-meals");
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -21,14 +21,14 @@ const FoodDelivery = () => {
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage>Food Delivery</BreadcrumbPage>
+              <BreadcrumbPage>Quick Meals</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
 
         <div className="mt-8 space-y-8">
           <div className="flex items-center justify-between">
-            <h1 className="text-3xl font-bold">Restaurants Near You</h1>
+            <h1 className="text-3xl font-bold">Quick Meals Near You</h1>
             <Button variant="outline" onClick={() => navigate("/")}>
               <ArrowLeft className="mr-2" />
               Back to Home
@@ -36,11 +36,11 @@ const FoodDelivery = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {foodDeliveryShops.map((shop) => (
+            {quickMealShops.map((shop) => (
               <KiranaShopCard
                 key={shop.id}
                 shop={shop}
-                onViewItems={() => navigate(`/food-delivery/${shop.id}`)}
+                onViewItems={() => navigate(`/quick-meals/${shop.id}`)}
               />
             ))}
           </div>
@@ -50,4 +50,4 @@ const FoodDelivery = () => {
   );
 };
 
-export default FoodDelivery;
+export default QuickMeals;
