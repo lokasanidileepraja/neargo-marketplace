@@ -12,6 +12,8 @@ import Pages from "@/pages/admin/Pages";
 import Index from "@/pages/Index";
 import FoodDelivery from "@/pages/FoodDelivery";
 import ShopDetail from "@/pages/ShopDetail";
+import Cart from "@/pages/Cart";
+import Checkout from "@/pages/Checkout";
 import { CartProvider } from "@/contexts/CartContext";
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="/food-delivery" element={<FoodDelivery />} />
           <Route path="/food-delivery/:id" element={<ShopDetail />} />
           <Route path="/groceries" element={<FoodDelivery />} />
