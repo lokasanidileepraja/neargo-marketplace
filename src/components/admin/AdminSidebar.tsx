@@ -73,6 +73,39 @@ const menuItems = [
 ];
 
 export function AdminSidebar({ open, onClose }: AdminSidebarProps) {
+  const isMobile = window.innerWidth < 1024;
+
+  if (!isMobile) {
+    return (
+      <div className="w-[300px] h-screen bg-white border-r overflow-y-auto">
+        <div className="p-6">
+          <h2 className="text-lg font-semibold">Admin Dashboard</h2>
+        </div>
+        <div className="overflow-y-auto">
+          {menuItems.map((item) => (
+            <div key={item.title} className="mb-2">
+              {item.subItems ? (
+                <SidebarGroup
+                  title={item.title}
+                  icon={item.icon}
+                  subItems={item.subItems}
+                  onClose={onClose}
+                />
+              ) : (
+                <SidebarItem
+                  title={item.title}
+                  icon={item.icon}
+                  href={item.href}
+                  onClose={onClose}
+                />
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <Sheet open={open} onOpenChange={onClose}>
       <SheetContent side="left" className="w-[300px] p-0">

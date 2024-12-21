@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AdminHeader } from "@/components/admin/AdminHeader";
@@ -11,12 +11,33 @@ import BackButton from "@/components/BackButton";
 
 export default function AdminDashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+      if (window.innerWidth >= 1024) {
+        setSidebarOpen(true);
+      } else {
+        setSidebarOpen(false);
+      }
+    };
+
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
+
+    return () => {
+      window.removeEventListener('resize', checkIfMobile);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50">
       <AdminHeader />
       <div className="flex">
-        <AdminSidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+        <div className={`${isMobile ? '' : 'w-[300px]'}`}>
+          <AdminSidebar open={sidebarOpen} onClose={() => isMobile && setSidebarOpen(false)} />
+        </div>
         <main className="flex-1 p-6">
           <div className="container mx-auto">
             <div className="flex items-center gap-4 mb-8">
