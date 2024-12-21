@@ -47,6 +47,18 @@ const Login = () => {
           description: "Your profile has been updated",
         });
       }
+      if (event === "PASSWORD_RECOVERY") {
+        toast({
+          title: "Password recovery email sent",
+          description: "Please check your email",
+        });
+      }
+      if (event === "USER_DELETED") {
+        toast({
+          title: "Account deleted",
+          description: "Your account has been deleted",
+        });
+      }
     });
 
     // Cleanup subscription
@@ -75,13 +87,6 @@ const Login = () => {
           theme="light"
           providers={[]}
           redirectTo={window.location.origin}
-          onError={(error) => {
-            toast({
-              title: "Error",
-              description: error.message,
-              variant: "destructive",
-            });
-          }}
         />
       </div>
     </div>
