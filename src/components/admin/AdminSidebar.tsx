@@ -3,8 +3,8 @@ import {
   Users,
   Store,
   ShoppingBag,
-  Megaphone,
-  MessageSquare,
+  Truck,
+  DollarSign,
   Settings,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -16,9 +16,9 @@ const menuItems = [
     href: "/admin",
   },
   {
-    title: "Users",
-    icon: Users,
-    href: "/admin/users",
+    title: "Orders",
+    icon: ShoppingBag,
+    href: "/admin/orders",
   },
   {
     title: "Restaurants",
@@ -26,19 +26,14 @@ const menuItems = [
     href: "/admin/restaurants",
   },
   {
-    title: "Orders",
-    icon: ShoppingBag,
-    href: "/admin/orders",
+    title: "Drivers",
+    icon: Truck,
+    href: "/admin/drivers",
   },
   {
-    title: "Marketing",
-    icon: Megaphone,
-    href: "/admin/marketing",
-  },
-  {
-    title: "Support",
-    icon: MessageSquare,
-    href: "/admin/support",
+    title: "Finances",
+    icon: DollarSign,
+    href: "/admin/finances",
   },
   {
     title: "Settings",

@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import Index from "@/pages/Index";
 import Cart from "@/pages/Cart";
 import Checkout from "@/pages/Checkout";
@@ -8,6 +7,7 @@ import AdminDashboard from "@/pages/admin/Dashboard";
 import Orders from "@/pages/admin/Orders";
 import Restaurants from "@/pages/admin/Restaurants";
 import Drivers from "@/pages/admin/Drivers";
+import Finances from "@/pages/admin/Finances";
 import Settings from "@/pages/admin/Settings";
 
 function App() {
@@ -22,6 +22,7 @@ function App() {
         <Route path="/admin/orders" element={<Orders />} />
         <Route path="/admin/restaurants" element={<Restaurants />} />
         <Route path="/admin/drivers" element={<Drivers />} />
+        <Route path="/admin/finances" element={<Finances />} />
         <Route path="/admin/settings" element={<Settings />} />
       </Routes>
     </Router>
