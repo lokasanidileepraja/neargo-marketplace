@@ -9,7 +9,7 @@ export function AdminLayout() {
       <div className="flex">
         <AdminSidebar />
         <main className="flex-1 p-6 ml-[300px] overflow-x-hidden">
-          <div className="max-w-[1400px] mx-auto">
+          <div className="container mx-auto">
             <div className="space-y-4">
               <Outlet />
             </div>
