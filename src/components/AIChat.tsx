@@ -1,15 +1,31 @@
-import { useState } from 'react';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { createOpenAIClient, generateResponse } from '@/utils/openai';
+import { useState, useEffect } from 'react';
 import { useToast } from "@/components/ui/use-toast";
+import { createOpenAIClient, generateResponse } from '@/utils/openai';
+import { APIKeyInput } from './ai/APIKeyInput';
+import { PromptForm } from './ai/PromptForm';
+import { ResponseDisplay } from './ai/ResponseDisplay';
+
+const API_KEY_STORAGE_KEY = 'openai-api-key';
 
 export default function AIChat() {
   const [prompt, setPrompt] = useState('');
   const [response, setResponse] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const { toast } = useToast();
   const [apiKey, setApiKey] = useState('');
+  const { toast } = useToast();
+
+  useEffect(() => {
+    // Load API key from localStorage on component mount
+    const savedApiKey = localStorage.getItem(API_KEY_STORAGE_KEY);
+    if (savedApiKey) {
+      setApiKey(savedApiKey);
+    }
+  }, []);
+
+  const handleApiKeyChange = (value: string) => {
+    setApiKey(value);
+    localStorage.setItem(API_KEY_STORAGE_KEY, value);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,6 +43,7 @@ export default function AIChat() {
       const openai = createOpenAIClient(apiKey);
       const result = await generateResponse(openai, prompt);
       setResponse(result || 'No response generated');
+      setPrompt(''); // Clear prompt after successful response
     } catch (error) {
       toast({
         title: "Error",
@@ -39,34 +56,18 @@ export default function AIChat() {
   };
 
   return (
-    <div className="p-4 space-y-4">
-      <div className="space-y-2">
-        <Input
-          type="password"
-          placeholder="Enter your OpenAI API key"
-          value={apiKey}
-          onChange={(e) => setApiKey(e.target.value)}
-          className="w-full"
-        />
-        <form onSubmit={handleSubmit} className="flex gap-2">
-          <Input
-            value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
-            placeholder="Enter your prompt..."
-            className="flex-1"
-          />
-          <Button type="submit" disabled={isLoading}>
-            {isLoading ? 'Generating...' : 'Send'}
-          </Button>
-        </form>
-      </div>
-      
-      {response && (
-        <div className="mt-4 p-4 bg-gray-50 rounded-lg">
-          <h3 className="font-semibold mb-2">Response:</h3>
-          <p className="whitespace-pre-wrap">{response}</p>
-        </div>
-      )}
+    <div className="p-4 space-y-6">
+      <APIKeyInput 
+        apiKey={apiKey} 
+        onChange={handleApiKeyChange}
+      />
+      <PromptForm
+        prompt={prompt}
+        onPromptChange={setPrompt}
+        onSubmit={handleSubmit}
+        isLoading={isLoading}
+      />
+      <ResponseDisplay response={response} />
     </div>
   );
 }
