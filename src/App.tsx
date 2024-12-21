@@ -13,6 +13,7 @@ import ShopDetail from './pages/ShopDetail';
 import Checkout from './pages/Checkout';
 import Orders from './pages/Orders';
 import OrderSuccess from './pages/OrderSuccess';
+import { AdminLayout } from './components/admin/AdminLayout';
 import AdminDashboard from './pages/admin/Dashboard';
 import AdminDispatcher from './pages/admin/Dispatcher';
 import AdminDrivers from './pages/admin/Drivers';
@@ -24,7 +25,6 @@ import AdminReviews from './pages/admin/Reviews';
 import AdminDocuments from './pages/admin/Documents';
 import AdminSettings from './pages/admin/Settings';
 import AdminPages from './pages/admin/Pages';
-import { AdminLayout } from './components/admin/AdminLayout';
 
 function App() {
   return (
@@ -44,8 +44,9 @@ function App() {
       <Route path="/orders" element={<Orders />} />
       <Route path="/order-success" element={<OrderSuccess />} />
       
-      {/* Admin Routes */}
+      {/* Admin Routes with proper layout */}
       <Route path="/admin" element={<AdminLayout />}>
+        <Route index element={<AdminDashboard />} />
         <Route path="dashboard" element={<AdminDashboard />} />
         <Route path="dispatcher" element={<AdminDispatcher />} />
         <Route path="drivers" element={<AdminDrivers />} />

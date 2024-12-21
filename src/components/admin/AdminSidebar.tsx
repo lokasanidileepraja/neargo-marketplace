@@ -47,7 +47,7 @@ const menuItems = [
   {
     title: "Promocodes",
     icon: Tag,
-    href: "/admin/promocodes",  // Fixed the path
+    href: "/admin/promocodes",
   },
   {
     title: "Reviews",
@@ -73,11 +73,11 @@ const menuItems = [
 
 export function AdminSidebar() {
   return (
-    <div className="fixed top-[64px] left-0 w-[300px] h-[calc(100vh-64px)] bg-white border-r border-gray-200 overflow-y-auto z-50">
+    <div className="fixed top-[64px] left-0 w-[300px] h-[calc(100vh-64px)] bg-white border-r border-gray-200 overflow-y-auto shadow-sm">
       <div className="p-6">
         <h2 className="text-lg font-semibold text-gray-900">Admin Dashboard</h2>
       </div>
-      <div className="overflow-y-auto h-full">
+      <div className="px-4 pb-6">
         {menuItems.map((item) => (
           <div key={item.title} className="mb-2">
             <SidebarItem
