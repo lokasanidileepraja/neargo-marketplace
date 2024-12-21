@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Star } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface KiranaShop {
   id: number;
@@ -8,6 +9,7 @@ interface KiranaShop {
   description: string;
   rating: number;
   image: string;
+  category: string;
   items: Array<{
     id: number;
     name: string;
@@ -18,10 +20,11 @@ interface KiranaShop {
 
 interface KiranaShopCardProps {
   shop: KiranaShop;
-  onViewItems: () => void;
 }
 
-const KiranaShopCard = ({ shop, onViewItems }: KiranaShopCardProps) => {
+const KiranaShopCard = ({ shop }: KiranaShopCardProps) => {
+  const navigate = useNavigate();
+
   return (
     <Card className="overflow-hidden">
       <img
@@ -39,7 +42,9 @@ const KiranaShopCard = ({ shop, onViewItems }: KiranaShopCardProps) => {
             <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
             <span className="font-medium">{shop.rating}</span>
           </div>
-          <Button onClick={onViewItems}>View Items</Button>
+          <Button onClick={() => navigate(`/${shop.category}/${shop.id}`)}>
+            View Items
+          </Button>
         </div>
       </div>
     </Card>

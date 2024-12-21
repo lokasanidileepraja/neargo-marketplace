@@ -30,7 +30,7 @@ const Groceries = () => {
           <div className="flex items-center justify-between">
             <h1 className="text-3xl font-bold">Grocery Stores Near You</h1>
             <Button variant="outline" onClick={() => navigate("/")}>
-              <ArrowLeft className="mr-2" />
+              <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Home
             </Button>
           </div>
@@ -40,7 +40,6 @@ const Groceries = () => {
               <KiranaShopCard
                 key={shop.id}
                 shop={shop}
-                onViewItems={() => navigate(`/groceries/${shop.id}`)}
               />
             ))}
           </div>

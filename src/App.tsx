@@ -24,6 +24,7 @@ import LocalFavorites from "@/pages/LocalFavorites";
 import HealthyOptions from "@/pages/HealthyOptions";
 import QuickMeals from "@/pages/QuickMeals";
 import RestaurantMenu from "@/pages/RestaurantMenu";
+import ShopDetail from "@/pages/ShopDetail";
 
 function App() {
   return (
@@ -37,10 +38,15 @@ function App() {
           <Route path="/food-delivery" element={<FoodDelivery />} />
           <Route path="/food-delivery/:id" element={<RestaurantMenu />} />
           <Route path="/groceries" element={<Groceries />} />
+          <Route path="/groceries/:id" element={<ShopDetail />} />
           <Route path="/pharmacy" element={<Pharmacy />} />
+          <Route path="/pharmacy/:id" element={<ShopDetail />} />
           <Route path="/local-favorites" element={<LocalFavorites />} />
+          <Route path="/local-favorites/:id" element={<ShopDetail />} />
           <Route path="/healthy-options" element={<HealthyOptions />} />
+          <Route path="/healthy-options/:id" element={<ShopDetail />} />
           <Route path="/quick-meals" element={<QuickMeals />} />
+          <Route path="/quick-meals/:id" element={<ShopDetail />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/orders" element={<Orders />} />
           <Route path="/admin/orders/:status" element={<Orders />} />
