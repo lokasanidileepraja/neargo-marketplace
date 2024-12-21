@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useParams, useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import Index from "@/pages/Index";
 import Cart from "@/pages/Cart";
 import Checkout from "@/pages/Checkout";
