@@ -30,17 +30,20 @@ export default function Documents() {
       lastModified: "2024-03-14",
       status: "Published",
     },
-    // Add more documents as needed
   ];
 
   return (
-    <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
-      <AdminHeader 
-        title="Documents" 
-        description="Manage and organize important documents"
-      />
+    <div className="space-y-4">
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold">Documents</h1>
+          <p className="text-muted-foreground">
+            Manage and organize important documents
+          </p>
+        </div>
+      </div>
       
-      <div className="flex items-center justify-between space-x-4 mb-4">
+      <div className="flex items-center justify-between space-x-4">
         <div className="flex-1 max-w-sm">
           <div className="relative">
             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />

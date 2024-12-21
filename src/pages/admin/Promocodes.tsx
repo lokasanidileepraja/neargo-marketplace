@@ -12,37 +12,41 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Filter, Plus, Search } from "lucide-react";
 
-export default function Promocodes() {
-  const promocodes = [
-    {
-      id: "1",
-      code: "SUMMER2024",
-      discount: "20%",
-      usageLimit: "100",
-      used: "45",
-      status: "Active",
-      expiry: "2024-08-31",
-    },
-    {
-      id: "2",
-      code: "WELCOME50",
-      discount: "50%",
-      usageLimit: "200",
-      used: "150",
-      status: "Active",
-      expiry: "2024-07-15",
-    },
-    // Add more promocodes as needed
-  ];
+const promocodes = [
+  {
+    id: "1",
+    code: "SUMMER2024",
+    discount: "20%",
+    usageLimit: "100",
+    used: "45",
+    status: "Active",
+    expiry: "2024-08-31",
+  },
+  {
+    id: "2",
+    code: "WELCOME50",
+    discount: "50%",
+    usageLimit: "200",
+    used: "150",
+    status: "Active",
+    expiry: "2024-07-15",
+  },
+  // Add more promocodes as needed
+];
 
+export default function Promocodes() {
   return (
-    <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
-      <AdminHeader 
-        title="Promocodes" 
-        description="Manage promotional codes and discounts"
-      />
+    <div className="space-y-4">
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold">Promocodes</h1>
+          <p className="text-muted-foreground">
+            Manage promotional codes and discounts
+          </p>
+        </div>
+      </div>
       
-      <div className="flex items-center justify-between space-x-4 mb-4">
+      <div className="flex items-center justify-between space-x-4">
         <div className="flex-1 max-w-sm">
           <div className="relative">
             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />

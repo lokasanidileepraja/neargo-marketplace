@@ -1,5 +1,4 @@
 import { AdminHeader } from "@/components/admin/AdminHeader";
-import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -15,7 +14,6 @@ import {
 } from "@/components/ui/table";
 import BackButton from "@/components/BackButton";
 
-// Dummy data for orders
 const orders = [
   {
     id: "#12345",
@@ -58,101 +56,93 @@ export default function Orders() {
   const [selectedStatus, setSelectedStatus] = useState(status || "All");
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <AdminHeader />
-      <div className="flex">
-        <AdminSidebar />
-        <main className="flex-1 p-6 ml-[300px]">
-          <div className="container mx-auto">
-            <BackButton to="/" label="Back to Home" />
-            <h1 className="text-3xl font-bold mb-8">Order Management</h1>
+    <div className="space-y-4">
+      <BackButton to="/" label="Back to Home" />
+      <h1 className="text-3xl font-bold">Order Management</h1>
 
-        <Card className="mb-8">
-          <CardHeader>
-            <CardTitle>Order Filters</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-wrap gap-4">
-              <Input
-                type="search"
-                placeholder="Search orders..."
-                className="max-w-sm"
-              />
-              <div className="flex gap-2 flex-wrap">
-                {orderStatuses.map((status) => (
-                  <Button
-                    key={status}
-                    variant={selectedStatus === status ? "default" : "outline"}
-                    onClick={() => setSelectedStatus(status)}
-                  >
-                    {status}
-                  </Button>
-                ))}
-              </div>
+      <Card>
+        <CardHeader>
+          <CardTitle>Order Filters</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex flex-wrap gap-4">
+            <Input
+              type="search"
+              placeholder="Search orders..."
+              className="max-w-sm"
+            />
+            <div className="flex gap-2 flex-wrap">
+              {orderStatuses.map((status) => (
+                <Button
+                  key={status}
+                  variant={selectedStatus === status ? "default" : "outline"}
+                  onClick={() => setSelectedStatus(status)}
+                >
+                  {status}
+                </Button>
+              ))}
             </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Orders List</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Order No.</TableHead>
-                  <TableHead>Order Date</TableHead>
-                  <TableHead>User Name</TableHead>
-                  <TableHead>Total Cost</TableHead>
-                  <TableHead>Refund Status</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {orders.map((order) => (
-                  <TableRow key={order.id}>
-                    <TableCell>{order.id}</TableCell>
-                    <TableCell>{order.date}</TableCell>
-                    <TableCell>{order.userName}</TableCell>
-                    <TableCell>{order.totalCost}</TableCell>
-                    <TableCell>{order.refundStatus}</TableCell>
-                    <TableCell>
-                      <span
-                        className={`px-2 py-1 rounded-full text-xs ${
-                          order.status === "Delivered"
-                            ? "bg-green-100 text-green-800"
-                            : order.status === "In Progress"
-                            ? "bg-blue-100 text-blue-800"
-                            : "bg-red-100 text-red-800"
-                        }`}
-                      >
-                        {order.status}
-                      </span>
-                    </TableCell>
-                    <TableCell>
-                      <Button variant="outline" size="sm">
-                        View Details
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-            <div className="mt-4 flex justify-end">
-              <Button variant="outline" size="sm" className="mr-2">
-                Previous
-              </Button>
-              <Button variant="outline" size="sm">
-                Next
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
           </div>
-        </main>
-      </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Orders List</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Order No.</TableHead>
+                <TableHead>Order Date</TableHead>
+                <TableHead>User Name</TableHead>
+                <TableHead>Total Cost</TableHead>
+                <TableHead>Refund Status</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {orders.map((order) => (
+                <TableRow key={order.id}>
+                  <TableCell>{order.id}</TableCell>
+                  <TableCell>{order.date}</TableCell>
+                  <TableCell>{order.userName}</TableCell>
+                  <TableCell>{order.totalCost}</TableCell>
+                  <TableCell>{order.refundStatus}</TableCell>
+                  <TableCell>
+                    <span
+                      className={`px-2 py-1 rounded-full text-xs ${
+                        order.status === "Delivered"
+                          ? "bg-green-100 text-green-800"
+                          : order.status === "In Progress"
+                          ? "bg-blue-100 text-blue-800"
+                          : "bg-red-100 text-red-800"
+                      }`}
+                    >
+                      {order.status}
+                    </span>
+                  </TableCell>
+                  <TableCell>
+                    <Button variant="outline" size="sm">
+                      View Details
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+          <div className="mt-4 flex justify-end">
+            <Button variant="outline" size="sm" className="mr-2">
+              Previous
+            </Button>
+            <Button variant="outline" size="sm">
+              Next
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
