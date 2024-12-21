@@ -1,5 +1,5 @@
 import { Table } from "@/components/ui/table";
-import AdminHeader from "@/components/admin/AdminHeader";
+import { AdminHeader } from "@/components/admin/AdminHeader";
 
 const RejectedRestaurants = () => {
   return (
