@@ -12,17 +12,36 @@ import {
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 
-export const AddRestaurantForm = () => {
+interface AddRestaurantFormProps {
+  onClose: () => void;
+}
+
+// Dummy data for testing
+const dummyData = {
+  name: "Sample Restaurant",
+  type: "fine-dining",
+  deliveryMethods: ["delivery", "pickup"],
+  cuisine: "italian",
+  description: "A fine dining Italian restaurant serving authentic cuisine",
+  address: "123 Restaurant Street, Foodville, FD 12345",
+  email: "sample@restaurant.com",
+  password: "samplepass123",
+  logo: null,
+  coverImage: null,
+  menuImages: [],
+};
+
+export const AddRestaurantForm = ({ onClose }: AddRestaurantFormProps) => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
-    name: "",
-    type: "",
-    deliveryMethods: [],
-    cuisine: "",
-    description: "",
-    address: "",
-    email: "",
-    password: "",
+    name: dummyData.name,
+    type: dummyData.type,
+    deliveryMethods: dummyData.deliveryMethods,
+    cuisine: dummyData.cuisine,
+    description: dummyData.description,
+    address: dummyData.address,
+    email: dummyData.email,
+    password: dummyData.password,
     logo: null as File | null,
     coverImage: null as File | null,
     menuImages: [] as File[],
@@ -50,18 +69,21 @@ export const AddRestaurantForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the data to your backend
     console.log("Form submitted:", formData);
     toast({
       title: "Restaurant Added",
       description: "The restaurant has been successfully added to the system.",
     });
+    onClose();
   };
 
   return (
     <Card className="w-full max-w-4xl mx-auto">
-      <CardHeader>
-        <CardTitle>Basic Information</CardTitle>
+      <CardHeader className="flex flex-row justify-between items-center">
+        <CardTitle>Add New Restaurant</CardTitle>
+        <Button variant="outline" onClick={onClose}>
+          Cancel
+        </Button>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -201,9 +223,14 @@ export const AddRestaurantForm = () => {
             </div>
           </div>
 
-          <Button type="submit" className="w-full md:w-auto">
-            Add Restaurant
-          </Button>
+          <div className="flex justify-end gap-4">
+            <Button type="button" variant="outline" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button type="submit">
+              Add Restaurant
+            </Button>
+          </div>
         </form>
       </CardContent>
     </Card>

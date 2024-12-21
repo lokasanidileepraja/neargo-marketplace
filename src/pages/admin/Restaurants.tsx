@@ -18,8 +18,8 @@ import { DocumentVerification } from "@/components/admin/restaurants/DocumentVer
 import { RestaurantList } from "@/components/admin/restaurants/RestaurantList";
 import { Restaurant } from "@/types/restaurant";
 import BackButton from "@/components/BackButton";
+import { AddRestaurantForm } from "@/components/admin/restaurants/AddRestaurantForm";
 
-// Dummy data
 const initialRestaurants: Restaurant[] = [
   {
     id: 1,
@@ -76,6 +76,7 @@ export default function Restaurants() {
   const [statusFilter, setStatusFilter] = useState("all");
   const [restaurants, setRestaurants] = useState<Restaurant[]>(initialRestaurants);
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
+  const [showAddForm, setShowAddForm] = useState(false);
   const { toast } = useToast();
 
   const handleStatusChange = (status: string) => {
@@ -120,90 +121,90 @@ export default function Restaurants() {
             <BackButton to="/" label="Back to Home" />
             <div className="flex justify-between items-center mb-8">
               <h1 className="text-3xl font-bold dark:text-white">Restaurant Management</h1>
-              <Button onClick={() => {
-                setSelectedRestaurant(null);
-                toast({
-                  title: "Add Restaurant",
-                  description: "Opening restaurant form...",
-                });
-              }}>
+              <Button onClick={() => setShowAddForm(true)}>
                 Add New Restaurant
               </Button>
             </div>
 
-            {selectedRestaurant && (
+            {showAddForm ? (
+              <AddRestaurantForm onClose={() => setShowAddForm(false)} />
+            ) : (
               <>
-                <RestaurantMetrics
-                  restaurant={selectedRestaurant}
-                  onMetricsUpdate={(metrics) => handleMetricsUpdate(selectedRestaurant.id, metrics)}
-                />
-                <DocumentVerification
-                  documents={selectedRestaurant.documents}
-                  onDocumentUpdate={(documents) => handleDocumentUpdate(selectedRestaurant.id, documents)}
-                />
+                {selectedRestaurant && (
+                  <>
+                    <RestaurantMetrics
+                      restaurant={selectedRestaurant}
+                      onMetricsUpdate={(metrics) => handleMetricsUpdate(selectedRestaurant.id, metrics)}
+                    />
+                    <DocumentVerification
+                      documents={selectedRestaurant.documents}
+                      onDocumentUpdate={(documents) => handleDocumentUpdate(selectedRestaurant.id, documents)}
+                    />
+                  </>
+                )}
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Restaurants List</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex gap-4 mb-4">
+                      <div className="relative flex-1">
+                        <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                        <Input
+                          placeholder="Search restaurants..."
+                          value={searchTerm}
+                          onChange={(e) => setSearchTerm(e.target.value)}
+                          className="pl-10"
+                        />
+                      </div>
+                      <Select
+                        value={statusFilter}
+                        onValueChange={handleStatusChange}
+                      >
+                        <SelectTrigger className="w-[180px]">
+                          <SelectValue placeholder="Filter by status" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="all">All Status</SelectItem>
+                          <SelectItem value="verified">Verified</SelectItem>
+                          <SelectItem value="pending">Pending</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <RestaurantList
+                      restaurants={restaurants}
+                      onEdit={setSelectedRestaurant}
+                    />
+
+                    <div className="flex justify-between items-center mt-4">
+                      <p className="text-sm text-gray-500">
+                        Showing {restaurants.length} restaurants
+                      </p>
+                      <div className="flex gap-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                          disabled={currentPage === 1}
+                        >
+                          Previous
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => setCurrentPage(currentPage + 1)}
+                          disabled={true}
+                        >
+                          Next
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </>
             )}
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Restaurants List</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex gap-4 mb-4">
-                  <div className="relative flex-1">
-                    <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                    <Input
-                      placeholder="Search restaurants..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10"
-                    />
-                  </div>
-                  <Select
-                    value={statusFilter}
-                    onValueChange={handleStatusChange}
-                  >
-                    <SelectTrigger className="w-[180px]">
-                      <SelectValue placeholder="Filter by status" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Status</SelectItem>
-                      <SelectItem value="verified">Verified</SelectItem>
-                      <SelectItem value="pending">Pending</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <RestaurantList
-                  restaurants={restaurants}
-                  onEdit={setSelectedRestaurant}
-                />
-
-                <div className="flex justify-between items-center mt-4">
-                  <p className="text-sm text-gray-500">
-                    Showing {restaurants.length} restaurants
-                  </p>
-                  <div className="flex gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                      disabled={currentPage === 1}
-                    >
-                      Previous
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => setCurrentPage(currentPage + 1)}
-                      disabled={true}
-                    >
-                      Next
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </main>
       </div>
