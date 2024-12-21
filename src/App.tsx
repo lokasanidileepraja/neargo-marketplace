@@ -28,11 +28,16 @@ import AdminReviews from './pages/admin/Reviews';
 import AdminDocuments from './pages/admin/Documents';
 import AdminSettings from './pages/admin/Settings';
 import AdminPages from './pages/admin/Pages';
+import { VendorLayout } from './components/vendor/VendorLayout';
+import VendorDashboard from './pages/vendor/Dashboard';
+import VendorOrders from './pages/vendor/Orders';
+import VendorProducts from './pages/vendor/Products';
+import VendorAnalytics from './pages/vendor/Analytics';
+import VendorSettings from './pages/vendor/Settings';
 
 function App() {
   return (
     <Routes>
-      {/* Temporarily removed login and authentication */}
       <Route path="/" element={<Home />} />
       <Route path="/food-delivery" element={<FoodDelivery />} />
       <Route path="/food-delivery/:id" element={<ShopDetail />} />
@@ -69,6 +74,16 @@ function App() {
         <Route path="documents" element={<AdminDocuments />} />
         <Route path="settings" element={<AdminSettings />} />
         <Route path="pages" element={<AdminPages />} />
+      </Route>
+
+      {/* Vendor Routes */}
+      <Route path="/vendor" element={<VendorLayout />}>
+        <Route index element={<VendorDashboard />} />
+        <Route path="dashboard" element={<VendorDashboard />} />
+        <Route path="orders" element={<VendorOrders />} />
+        <Route path="products" element={<VendorProducts />} />
+        <Route path="analytics" element={<VendorAnalytics />} />
+        <Route path="settings" element={<VendorSettings />} />
       </Route>
     </Routes>
   );

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ShoppingCart, Bell, User, Settings } from "lucide-react";
+import { ShoppingCart, Bell, User, Settings, Store } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
 import {
@@ -111,6 +111,12 @@ const Navbar = () => {
                   <Link to="/admin/dashboard" className="flex items-center gap-2 w-full">
                     <Settings className="h-4 w-4" />
                     Admin Dashboard
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link to="/vendor/dashboard" className="flex items-center gap-2 w-full">
+                    <Store className="h-4 w-4" />
+                    Vendor Dashboard
                   </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
