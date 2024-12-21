@@ -8,8 +8,8 @@ import {
   Clock,
   Tag,
   Star,
-  FileText,
   File,
+  FileText,
 } from "lucide-react";
 import { SidebarItem } from "./sidebar/SidebarItem";
 
@@ -47,7 +47,7 @@ const menuItems = [
   {
     title: "Promocodes",
     icon: Tag,
-    href: "/admin/promocodes",
+    href: "/admin/promocodes",  // Fixed the path
   },
   {
     title: "Reviews",

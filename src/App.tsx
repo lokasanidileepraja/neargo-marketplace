@@ -1,38 +1,33 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { CartProvider } from "./contexts/CartContext";
-import Home from "./pages/Home";
-import Menu from "./pages/Menu";
-import Cart from "./pages/Cart";
-import Checkout from "./pages/Checkout";
-import OrderSuccess from "./pages/OrderSuccess";
-import AdminDashboard from "./pages/admin/Dashboard";
-import AdminOrders from "./pages/admin/Orders";
-import AdminRestaurants from "./pages/admin/Restaurants";
-import AdminFinances from "./pages/admin/Finances";
-import AdminSettings from "./pages/admin/Settings";
-import Drivers from "./pages/admin/Drivers";
-import AddDriver from "./pages/admin/drivers/AddDriver";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Dashboard from "@/pages/admin/Dashboard";
+import Dispatcher from "@/pages/admin/Dispatcher";
+import Drivers from "@/pages/admin/Drivers";
+import Orders from "@/pages/admin/Orders";
+import Restaurants from "@/pages/admin/Restaurants";
+import Finances from "@/pages/admin/Finances";
+import Promocodes from "@/pages/admin/Promocodes";
+import Reviews from "@/pages/admin/Reviews";
+import Documents from "@/pages/admin/Documents";
+import Settings from "@/pages/admin/Settings";
+import Pages from "@/pages/admin/Pages";
 
 function App() {
   return (
-    <BrowserRouter>
-      <CartProvider>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/order-success" element={<OrderSuccess />} />
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          <Route path="/admin/orders" element={<AdminOrders />} />
-          <Route path="/admin/restaurants" element={<AdminRestaurants />} />
-          <Route path="/admin/drivers" element={<Drivers />} />
-          <Route path="/admin/drivers/add" element={<AddDriver />} />
-          <Route path="/admin/finances" element={<AdminFinances />} />
-          <Route path="/admin/settings" element={<AdminSettings />} />
-        </Routes>
-      </CartProvider>
-    </BrowserRouter>
+    <Router>
+      <Routes>
+        <Route path="/admin/dashboard" element={<Dashboard />} />
+        <Route path="/admin/dispatcher" element={<Dispatcher />} />
+        <Route path="/admin/drivers" element={<Drivers />} />
+        <Route path="/admin/orders" element={<Orders />} />
+        <Route path="/admin/restaurants" element={<Restaurants />} />
+        <Route path="/admin/finances" element={<Finances />} />
+        <Route path="/admin/promocodes" element={<Promocodes />} />
+        <Route path="/admin/reviews" element={<Reviews />} />
+        <Route path="/admin/documents" element={<Documents />} />
+        <Route path="/admin/settings" element={<Settings />} />
+        <Route path="/admin/pages" element={<Pages />} />
+      </Routes>
+    </Router>
   );
 }
 
