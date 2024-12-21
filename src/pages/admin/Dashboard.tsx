@@ -4,25 +4,46 @@ import { RecentOrders } from "@/components/admin/dashboard/RecentOrders";
 import { RevenueChart } from "@/components/admin/dashboard/RevenueChart";
 import { ActivityFeed } from "@/components/admin/dashboard/ActivityFeed";
 import BackButton from "@/components/BackButton";
+import { AdminSidebar } from "@/components/admin/AdminSidebar";
+import { useState } from "react";
+import { Menu } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function AdminDashboard() {
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+
   return (
     <div className="min-h-screen bg-gray-50">
       <AdminHeader />
-      <main className="container mx-auto py-8 px-4">
-        <BackButton to="/" label="Back to Home" />
-        <h1 className="text-3xl font-bold mb-8">Dashboard Overview</h1>
-        <DashboardMetrics />
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
-          <div className="lg:col-span-2">
-            <RevenueChart />
+      <div className="flex">
+        <AdminSidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+        <main className="flex-1">
+          <div className="container mx-auto py-8 px-4">
+            <div className="flex items-center gap-4 mb-8">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setSidebarOpen(!sidebarOpen)}
+                className="lg:hidden"
+              >
+                <Menu className="h-6 w-6" />
+              </Button>
+              <BackButton to="/" label="Back to Home" />
+            </div>
+            <h1 className="text-3xl font-bold mb-8">Dashboard Overview</h1>
+            <DashboardMetrics />
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
+              <div className="lg:col-span-2">
+                <RevenueChart />
+              </div>
+              <div>
+                <ActivityFeed />
+              </div>
+            </div>
+            <RecentOrders />
           </div>
-          <div>
-            <ActivityFeed />
-          </div>
-        </div>
-        <RecentOrders />
-      </main>
+        </main>
+      </div>
     </div>
   );
 }

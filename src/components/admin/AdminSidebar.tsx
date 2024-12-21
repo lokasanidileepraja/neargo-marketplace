@@ -5,15 +5,20 @@ import {
   Truck,
   DollarSign,
   Settings,
-  ChevronDown,
+  ChevronRight,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
+
+interface AdminSidebarProps {
+  open: boolean;
+  onClose: () => void;
+}
 
 const menuItems = [
   {
@@ -67,47 +72,57 @@ const menuItems = [
   },
 ];
 
-export function AdminSidebar() {
+export function AdminSidebar({ open, onClose }: AdminSidebarProps) {
   const navigate = useNavigate();
 
+  const handleNavigation = (href: string) => {
+    navigate(href);
+    onClose();
+  };
+
   return (
-    <div className="flex h-full w-full flex-col bg-white">
-      <div className="p-6">
-        <h2 className="text-lg font-semibold">Admin Dashboard</h2>
-      </div>
-      <nav className="flex-1">
-        {menuItems.map((item) => (
-          <div key={item.title}>
-            {item.subItems ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger className="flex w-full items-center gap-3 px-6 py-3 text-gray-700 hover:bg-gray-100">
-                  <item.icon className="h-5 w-5" />
-                  <span>{item.title}</span>
-                  <ChevronDown className="ml-auto h-4 w-4" />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56">
-                  {item.subItems.map((subItem) => (
-                    <DropdownMenuItem
-                      key={subItem.href}
-                      onClick={() => navigate(subItem.href)}
-                    >
-                      {subItem.title}
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
-            ) : (
-              <button
-                onClick={() => navigate(item.href)}
-                className="flex w-full items-center gap-3 px-6 py-3 text-gray-700 hover:bg-gray-100"
-              >
-                <item.icon className="h-5 w-5" />
-                <span>{item.title}</span>
-              </button>
-            )}
-          </div>
-        ))}
-      </nav>
-    </div>
+    <Sheet open={open} onOpenChange={onClose}>
+      <SheetContent side="left" className="w-[300px] p-0">
+        <SheetHeader className="p-6">
+          <SheetTitle>Admin Dashboard</SheetTitle>
+        </SheetHeader>
+        <div className="overflow-y-auto h-full">
+          {menuItems.map((item) => (
+            <div key={item.title} className="mb-2">
+              {item.subItems ? (
+                <div>
+                  <div className="flex items-center gap-3 px-6 py-3 text-gray-700">
+                    <item.icon className="h-5 w-5" />
+                    <span className="font-medium">{item.title}</span>
+                  </div>
+                  <div className="ml-12 space-y-1">
+                    {item.subItems.map((subItem) => (
+                      <button
+                        key={subItem.href}
+                        onClick={() => handleNavigation(subItem.href)}
+                        className="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-gray-100 transition-colors"
+                      >
+                        {subItem.title}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <button
+                  onClick={() => handleNavigation(item.href)}
+                  className="flex w-full items-center justify-between px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <item.icon className="h-5 w-5" />
+                    <span>{item.title}</span>
+                  </div>
+                  <ChevronRight className="h-5 w-5 text-gray-400" />
+                </button>
+              )}
+            </div>
+          ))}
+        </div>
+      </SheetContent>
+    </Sheet>
   );
 }
