@@ -53,12 +53,6 @@ const Login = () => {
           description: "Please check your email",
         });
       }
-      if (event === "USER_DELETED") {
-        toast({
-          title: "Account deleted",
-          description: "Your account has been deleted",
-        });
-      }
     });
 
     // Cleanup subscription
