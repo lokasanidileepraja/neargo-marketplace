@@ -9,11 +9,6 @@ import {
 import { SidebarItem } from "./sidebar/SidebarItem";
 import { SidebarGroup } from "./sidebar/SidebarGroup";
 
-interface AdminSidebarProps {
-  open: boolean;
-  onClose: () => void;
-}
-
 const menuItems = [
   {
     title: "Dashboard",
@@ -23,15 +18,7 @@ const menuItems = [
   {
     title: "Orders",
     icon: ShoppingBag,
-    subItems: [
-      { title: "All Orders", href: "/admin/orders" },
-      { title: "Pending Orders", href: "/admin/orders/pending" },
-      { title: "Approved Orders", href: "/admin/orders/approved" },
-      { title: "Rejected Orders", href: "/admin/orders/rejected" },
-      { title: "Ongoing Orders", href: "/admin/orders/ongoing" },
-      { title: "Completed Orders", href: "/admin/orders/completed" },
-      { title: "Cancelled Orders", href: "/admin/orders/cancelled" },
-    ],
+    href: "/admin/orders",
   },
   {
     title: "Restaurants",
@@ -39,9 +26,6 @@ const menuItems = [
     subItems: [
       { title: "Add Restaurant", href: "/admin/restaurants/add" },
       { title: "Restaurant List", href: "/admin/restaurants" },
-      { title: "Un-Approved Restaurants", href: "/admin/restaurants/unapproved" },
-      { title: "Blocked Restaurants", href: "/admin/restaurants/blocked" },
-      { title: "Rejected Restaurants", href: "/admin/restaurants/rejected" },
     ],
   },
   {
@@ -57,12 +41,7 @@ const menuItems = [
   {
     title: "Settings",
     icon: Settings,
-    subItems: [
-      { title: "General Settings", href: "/admin/settings" },
-      { title: "Delivery Charges", href: "/admin/settings/delivery-charges" },
-      { title: "Push Notifications", href: "/admin/settings/notifications" },
-      { title: "Service Settings", href: "/admin/settings/service" },
-    ],
+    href: "/admin/settings",
   },
 ];
 
