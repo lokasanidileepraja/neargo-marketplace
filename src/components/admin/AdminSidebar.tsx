@@ -6,12 +6,6 @@ import {
   DollarSign,
   Settings,
 } from "lucide-react";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet";
 import { SidebarItem } from "./sidebar/SidebarItem";
 import { SidebarGroup } from "./sidebar/SidebarGroup";
 
@@ -73,8 +67,10 @@ const menuItems = [
 ];
 
 export function AdminSidebar({ open, onClose }: AdminSidebarProps) {
+  if (!open) return null;
+  
   return (
-    <div className="w-[300px] h-screen bg-white border-r overflow-y-auto">
+    <div className="fixed w-[300px] h-screen bg-white border-r overflow-y-auto">
       <div className="p-6">
         <h2 className="text-lg font-semibold">Admin Dashboard</h2>
       </div>
