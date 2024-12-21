@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ShoppingCart, Bell, User, Settings, Store } from "lucide-react";
+import { ShoppingCart, Bell, User, Settings, Store, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
 import {
@@ -9,9 +9,14 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
+import { useState } from "react";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Navbar = () => {
   const { itemCount } = useCart();
+  const isMobile = useIsMobile();
+  const [isOpen, setIsOpen] = useState(false);
 
   // Dummy notifications data
   const notifications = [
@@ -42,17 +47,39 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="h-16" /> {/* Spacer to prevent content from going under fixed navbar */}
+      <div className="h-16" />
       <nav className="fixed top-0 left-0 right-0 bg-white border-b border-gray-100 z-50">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
+              {isMobile && (
+                <Sheet>
+                  <SheetTrigger asChild>
+                    <Button variant="ghost" size="icon" className="mr-2">
+                      <Menu className="h-5 w-5" />
+                    </Button>
+                  </SheetTrigger>
+                  <SheetContent side="left" className="w-[300px] sm:w-[400px]">
+                    <nav className="flex flex-col gap-4">
+                      <Link to="/" className="flex items-center py-2 text-lg font-semibold">
+                        Home
+                      </Link>
+                      <Link to="/food-delivery" className="py-2">Food Delivery</Link>
+                      <Link to="/groceries" className="py-2">Groceries</Link>
+                      <Link to="/pharmacy" className="py-2">Pharmacy</Link>
+                      <Link to="/healthy-options" className="py-2">Healthy Options</Link>
+                      <Link to="/quick-meals" className="py-2">Quick Meals</Link>
+                      <Link to="/local-favorites" className="py-2">Local Favorites</Link>
+                    </nav>
+                  </SheetContent>
+                </Sheet>
+              )}
               <Link to="/" className="flex items-center">
                 <span className="text-xl font-bold text-primary">NearGo</span>
               </Link>
             </div>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 sm:gap-4">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="icon" className="relative hover:bg-gray-100">
@@ -64,7 +91,7 @@ const Navbar = () => {
                     )}
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-80">
+                <DropdownMenuContent align="end" className="w-[280px] sm:w-80">
                   {notifications.map((notification) => (
                     <DropdownMenuItem key={notification.id} className="p-4 cursor-pointer">
                       <div className="flex flex-col gap-1">
