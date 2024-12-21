@@ -4,8 +4,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import BackButton from "@/components/BackButton";
+import { useNavigate } from "react-router-dom";
 
 export default function Drivers() {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen bg-gray-50">
       <AdminHeader />
@@ -16,7 +19,7 @@ export default function Drivers() {
             <BackButton to="/admin" label="Back to Dashboard" />
             <div className="flex justify-between items-center mb-8">
               <h1 className="text-3xl font-bold">Driver Management</h1>
-              <Button>Add New Driver</Button>
+              <Button onClick={() => navigate("/admin/drivers/add")}>Add New Driver</Button>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
               <Card>
