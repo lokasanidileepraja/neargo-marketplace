@@ -1,13 +1,17 @@
 import {
   BarChart3,
-  ShoppingBag,
+  ShoppingCart,
   Store,
   Truck,
   DollarSign,
   Settings,
+  Clock,
+  Tag,
+  Star,
+  FileText,
+  File,
 } from "lucide-react";
 import { SidebarItem } from "./sidebar/SidebarItem";
-import { SidebarGroup } from "./sidebar/SidebarGroup";
 
 const menuItems = [
   {
@@ -16,8 +20,18 @@ const menuItems = [
     href: "/admin/dashboard",
   },
   {
+    title: "Dispatcher",
+    icon: Clock,
+    href: "/admin/dispatcher",
+  },
+  {
+    title: "Delivery Persons",
+    icon: Truck,
+    href: "/admin/drivers",
+  },
+  {
     title: "Orders",
-    icon: ShoppingBag,
+    icon: ShoppingCart,
     href: "/admin/orders",
   },
   {
@@ -26,25 +40,40 @@ const menuItems = [
     href: "/admin/restaurants",
   },
   {
-    title: "Drivers",
-    icon: Truck,
-    href: "/admin/drivers",
-  },
-  {
-    title: "Finances",
+    title: "Earnings",
     icon: DollarSign,
     href: "/admin/finances",
+  },
+  {
+    title: "Promocodes",
+    icon: Tag,
+    href: "/admin/promocodes",
+  },
+  {
+    title: "Reviews",
+    icon: Star,
+    href: "/admin/reviews",
+  },
+  {
+    title: "Documents",
+    icon: File,
+    href: "/admin/documents",
   },
   {
     title: "Settings",
     icon: Settings,
     href: "/admin/settings",
   },
+  {
+    title: "Pages",
+    icon: FileText,
+    href: "/admin/pages",
+  },
 ];
 
 export function AdminSidebar() {
   return (
-    <div className="fixed top-[64px] left-0 w-[300px] h-[calc(100vh-64px)] bg-gray-50 border-r border-gray-200 overflow-y-auto z-50">
+    <div className="fixed top-[64px] left-0 w-[300px] h-[calc(100vh-64px)] bg-white border-r border-gray-200 overflow-y-auto z-50">
       <div className="p-6">
         <h2 className="text-lg font-semibold text-gray-900">Admin Dashboard</h2>
       </div>
