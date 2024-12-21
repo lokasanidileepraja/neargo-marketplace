@@ -17,7 +17,7 @@ export default function BlockedRestaurants() {
         description="Manage restaurants that have been blocked from the platform" 
       />
       <main className="container mx-auto py-8 px-4">
-        <BackButton to="/admin/restaurants" label="Back to Restaurants" />
+        <BackButton to="/" label="Back to Home" />
         <Card className="mt-8">
           <CardHeader>
             <CardTitle>Blocked Restaurants List</CardTitle>

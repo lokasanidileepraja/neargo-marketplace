@@ -64,7 +64,7 @@ export default function Orders() {
         <AdminSidebar />
         <main className="flex-1 p-6 ml-[300px]">
           <div className="container mx-auto">
-            <BackButton to="/admin" label="Back to Dashboard" />
+            <BackButton to="/" label="Back to Home" />
             <h1 className="text-3xl font-bold mb-8">Order Management</h1>
 
         <Card className="mb-8">

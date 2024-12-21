@@ -14,7 +14,7 @@ export default function Restaurants() {
         <AdminSidebar />
         <main className="flex-1 p-6 ml-[300px]">
           <div className="container mx-auto">
-            <BackButton to="/admin" label="Back to Dashboard" />
+            <BackButton to="/" label="Back to Home" />
             <div className="flex justify-between items-center mb-8">
               <h1 className="text-3xl font-bold">Restaurant Management</h1>
               <Button>Add New Restaurant</Button>
