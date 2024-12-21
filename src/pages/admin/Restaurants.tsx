@@ -37,6 +37,24 @@ const initialRestaurants: Restaurant[] = [
     closingHours: "22:00",
     deliveryRadius: 5,
     minimumOrder: 15,
+    menu: [
+      {
+        id: 1,
+        name: "Margherita Pizza",
+        price: 12.99,
+        description: "Fresh tomatoes, mozzarella, and basil",
+        image: "https://example.com/margherita.jpg",
+        category: "Pizza"
+      },
+      {
+        id: 2,
+        name: "Pepperoni Pizza",
+        price: 14.99,
+        description: "Classic pepperoni with cheese",
+        image: "https://example.com/pepperoni.jpg",
+        category: "Pizza"
+      }
+    ],
     documents: {
       businessLicense: "https://example.com/license1.pdf",
       foodLicense: "https://example.com/food1.pdf",
