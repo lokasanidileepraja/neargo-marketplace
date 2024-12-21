@@ -44,9 +44,9 @@ const menuItems = [
 
 export function AdminSidebar() {
   return (
-    <div className="fixed top-[64px] left-0 w-[300px] h-[calc(100vh-64px)] bg-white border-r overflow-y-auto z-50">
+    <div className="fixed top-[64px] left-0 w-[300px] h-[calc(100vh-64px)] bg-gray-50 border-r border-gray-200 overflow-y-auto z-50">
       <div className="p-6">
-        <h2 className="text-lg font-semibold">Admin Dashboard</h2>
+        <h2 className="text-lg font-semibold text-gray-900">Admin Dashboard</h2>
       </div>
       <div className="overflow-y-auto h-full">
         {menuItems.map((item) => (

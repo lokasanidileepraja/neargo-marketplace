@@ -53,7 +53,7 @@ export default function Drivers() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B1120] text-white">
+    <div className="min-h-screen bg-white">
       <AdminHeader />
       <div className="flex">
         <AdminSidebar />
@@ -61,14 +61,14 @@ export default function Drivers() {
           <div className="container mx-auto">
             <div className="flex justify-between items-center mb-8">
               <div>
-                <h1 className="text-3xl font-bold">Delivery Persons</h1>
-                <p className="text-gray-400 mt-2">
+                <h1 className="text-3xl font-bold text-gray-900">Delivery Persons</h1>
+                <p className="text-gray-600 mt-2">
                   Manage delivery personnel and their assignments
                 </p>
               </div>
               <Button 
                 onClick={() => navigate("/admin/drivers/add")}
-                className="bg-blue-500 hover:bg-blue-600"
+                className="bg-primary hover:bg-primary/90"
               >
                 + Add Delivery Person
               </Button>
@@ -79,11 +79,11 @@ export default function Drivers() {
                 <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                 <Input
                   placeholder="Search delivery persons..."
-                  className="pl-10 bg-transparent border-gray-700 text-white"
+                  className="pl-10 bg-white border-gray-200"
                 />
               </div>
               <Select defaultValue="all">
-                <SelectTrigger className="w-[180px] bg-transparent border-gray-700 text-white">
+                <SelectTrigger className="w-[180px] bg-white border-gray-200">
                   <SelectValue placeholder="All Status" />
                 </SelectTrigger>
                 <SelectContent>
@@ -94,22 +94,22 @@ export default function Drivers() {
               </Select>
             </div>
 
-            <div className="rounded-lg border border-gray-700 overflow-hidden">
+            <div className="rounded-lg border border-gray-200 overflow-hidden bg-white">
               <Table>
                 <TableHeader>
-                  <TableRow className="border-gray-700 hover:bg-transparent">
-                    <TableHead className="text-gray-400">Name</TableHead>
-                    <TableHead className="text-gray-400">Contact Number</TableHead>
-                    <TableHead className="text-gray-400">Rating</TableHead>
-                    <TableHead className="text-gray-400">Document Status</TableHead>
-                    <TableHead className="text-gray-400">Online Status</TableHead>
+                  <TableRow className="hover:bg-gray-50">
+                    <TableHead className="text-gray-600">Name</TableHead>
+                    <TableHead className="text-gray-600">Contact Number</TableHead>
+                    <TableHead className="text-gray-600">Rating</TableHead>
+                    <TableHead className="text-gray-600">Document Status</TableHead>
+                    <TableHead className="text-gray-600">Online Status</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {dummyDrivers.map((driver) => (
-                    <TableRow key={driver.id} className="border-gray-700 hover:bg-gray-800/50">
-                      <TableCell className="text-white">{driver.name}</TableCell>
-                      <TableCell className="text-white">{driver.contactNumber}</TableCell>
+                    <TableRow key={driver.id} className="hover:bg-gray-50">
+                      <TableCell className="text-gray-900">{driver.name}</TableCell>
+                      <TableCell className="text-gray-900">{driver.contactNumber}</TableCell>
                       <TableCell>
                         <div className="flex gap-1">
                           {[...Array(driver.rating)].map((_, i) => (
