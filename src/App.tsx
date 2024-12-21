@@ -1,7 +1,6 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { supabase } from "@/integrations/supabase/client";
-import Login from './pages/Login';
 import Home from './pages/Home';
 import FoodDelivery from './pages/FoodDelivery';
 import Groceries from './pages/Groceries';
@@ -30,52 +29,34 @@ import AdminDocuments from './pages/admin/Documents';
 import AdminSettings from './pages/admin/Settings';
 import AdminPages from './pages/admin/Pages';
 
-function ProtectedRoute({ children }: { children: React.ReactNode }) {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    supabase.auth.onAuthStateChange((event, session) => {
-      setIsAuthenticated(!!session);
-    });
-  }, []);
-
-  if (isAuthenticated === null) {
-    return <div>Loading...</div>;
-  }
-
-  return isAuthenticated ? <>{children}</> : <Navigate to="/login" />;
-}
-
 function App() {
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
-      
-      {/* Protected Routes */}
-      <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
-      <Route path="/food-delivery" element={<ProtectedRoute><FoodDelivery /></ProtectedRoute>} />
-      <Route path="/food-delivery/:id" element={<ProtectedRoute><ShopDetail /></ProtectedRoute>} />
-      <Route path="/groceries" element={<ProtectedRoute><Groceries /></ProtectedRoute>} />
-      <Route path="/groceries/:id" element={<ProtectedRoute><ShopDetail /></ProtectedRoute>} />
-      <Route path="/pharmacy" element={<ProtectedRoute><Pharmacy /></ProtectedRoute>} />
-      <Route path="/pharmacy/:id" element={<ProtectedRoute><ShopDetail /></ProtectedRoute>} />
-      <Route path="/healthy-options" element={<ProtectedRoute><HealthyOptions /></ProtectedRoute>} />
-      <Route path="/healthy-options/:id" element={<ProtectedRoute><ShopDetail /></ProtectedRoute>} />
-      <Route path="/quick-meals" element={<ProtectedRoute><QuickMeals /></ProtectedRoute>} />
-      <Route path="/quick-meals/:id" element={<ProtectedRoute><ShopDetail /></ProtectedRoute>} />
-      <Route path="/local-favorites" element={<ProtectedRoute><LocalFavorites /></ProtectedRoute>} />
-      <Route path="/local-favorites/:id" element={<ProtectedRoute><ShopDetail /></ProtectedRoute>} />
-      <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
-      <Route path="/menu" element={<ProtectedRoute><Menu /></ProtectedRoute>} />
-      <Route path="/restaurant-menu" element={<ProtectedRoute><RestaurantMenu /></ProtectedRoute>} />
-      <Route path="/shop/:id" element={<ProtectedRoute><ShopDetail /></ProtectedRoute>} />
-      <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
-      <Route path="/orders" element={<ProtectedRoute><Orders /></ProtectedRoute>} />
-      <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-      <Route path="/order-success" element={<ProtectedRoute><OrderSuccess /></ProtectedRoute>} />
+      {/* Temporarily removed login and authentication */}
+      <Route path="/" element={<Home />} />
+      <Route path="/food-delivery" element={<FoodDelivery />} />
+      <Route path="/food-delivery/:id" element={<ShopDetail />} />
+      <Route path="/groceries" element={<Groceries />} />
+      <Route path="/groceries/:id" element={<ShopDetail />} />
+      <Route path="/pharmacy" element={<Pharmacy />} />
+      <Route path="/pharmacy/:id" element={<ShopDetail />} />
+      <Route path="/healthy-options" element={<HealthyOptions />} />
+      <Route path="/healthy-options/:id" element={<ShopDetail />} />
+      <Route path="/quick-meals" element={<QuickMeals />} />
+      <Route path="/quick-meals/:id" element={<ShopDetail />} />
+      <Route path="/local-favorites" element={<LocalFavorites />} />
+      <Route path="/local-favorites/:id" element={<ShopDetail />} />
+      <Route path="/cart" element={<Cart />} />
+      <Route path="/menu" element={<Menu />} />
+      <Route path="/restaurant-menu" element={<RestaurantMenu />} />
+      <Route path="/shop/:id" element={<ShopDetail />} />
+      <Route path="/checkout" element={<Checkout />} />
+      <Route path="/orders" element={<Orders />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/order-success" element={<OrderSuccess />} />
       
       {/* Admin Routes */}
-      <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
+      <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<AdminDashboard />} />
         <Route path="dashboard" element={<AdminDashboard />} />
         <Route path="dispatcher" element={<AdminDispatcher />} />
