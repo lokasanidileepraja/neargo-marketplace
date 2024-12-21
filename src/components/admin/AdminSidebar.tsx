@@ -66,15 +66,15 @@ const menuItems = [
   },
 ];
 
-export function AdminSidebar({ open, onClose }: AdminSidebarProps) {
+export function AdminSidebar({ open }: AdminSidebarProps) {
   if (!open) return null;
   
   return (
-    <div className="fixed w-[300px] h-screen bg-white border-r overflow-y-auto">
+    <div className="fixed top-[64px] left-0 w-[300px] h-[calc(100vh-64px)] bg-white border-r overflow-y-auto z-50">
       <div className="p-6">
         <h2 className="text-lg font-semibold">Admin Dashboard</h2>
       </div>
-      <div className="overflow-y-auto">
+      <div className="overflow-y-auto h-full">
         {menuItems.map((item) => (
           <div key={item.title} className="mb-2">
             {item.subItems ? (
@@ -82,14 +82,14 @@ export function AdminSidebar({ open, onClose }: AdminSidebarProps) {
                 title={item.title}
                 icon={item.icon}
                 subItems={item.subItems}
-                onClose={onClose}
+                onClose={() => {}}
               />
             ) : (
               <SidebarItem
                 title={item.title}
                 icon={item.icon}
                 href={item.href}
-                onClose={onClose}
+                onClose={() => {}}
               />
             )}
           </div>

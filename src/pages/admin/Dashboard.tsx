@@ -1,6 +1,3 @@
-import { useState } from "react";
-import { Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { AdminHeader } from "@/components/admin/AdminHeader";
 import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { DashboardMetrics } from "@/components/admin/dashboard/DashboardMetrics";
@@ -10,16 +7,12 @@ import { ActivityFeed } from "@/components/admin/dashboard/ActivityFeed";
 import BackButton from "@/components/BackButton";
 
 export default function AdminDashboard() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-
   return (
     <div className="min-h-screen bg-gray-50">
       <AdminHeader />
       <div className="flex">
-        <div className="w-[300px]">
-          <AdminSidebar open={sidebarOpen} onClose={() => {}} />
-        </div>
-        <main className="flex-1 p-6">
+        <AdminSidebar open={true} onClose={() => {}} />
+        <main className="flex-1 p-6 ml-[300px]">
           <div className="container mx-auto">
             <div className="flex items-center gap-4 mb-8">
               <BackButton to="/" label="Back to Home" />
