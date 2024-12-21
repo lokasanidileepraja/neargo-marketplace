@@ -1,13 +1,19 @@
 import {
   BarChart3,
-  Users,
-  Store,
   ShoppingBag,
+  Store,
   Truck,
   DollarSign,
   Settings,
+  ChevronDown,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const menuItems = [
   {
@@ -18,12 +24,26 @@ const menuItems = [
   {
     title: "Orders",
     icon: ShoppingBag,
-    href: "/admin/orders",
+    subItems: [
+      { title: "All Orders", href: "/admin/orders" },
+      { title: "Pending Orders", href: "/admin/orders/pending" },
+      { title: "Approved Orders", href: "/admin/orders/approved" },
+      { title: "Rejected Orders", href: "/admin/orders/rejected" },
+      { title: "Ongoing Orders", href: "/admin/orders/ongoing" },
+      { title: "Completed Orders", href: "/admin/orders/completed" },
+      { title: "Cancelled Orders", href: "/admin/orders/cancelled" },
+    ],
   },
   {
     title: "Restaurants",
     icon: Store,
-    href: "/admin/restaurants",
+    subItems: [
+      { title: "Add Restaurant", href: "/admin/restaurants/add" },
+      { title: "Restaurant List", href: "/admin/restaurants" },
+      { title: "Un-Approved Restaurants", href: "/admin/restaurants/unapproved" },
+      { title: "Blocked Restaurants", href: "/admin/restaurants/blocked" },
+      { title: "Rejected Restaurants", href: "/admin/restaurants/rejected" },
+    ],
   },
   {
     title: "Drivers",
@@ -38,7 +58,12 @@ const menuItems = [
   {
     title: "Settings",
     icon: Settings,
-    href: "/admin/settings",
+    subItems: [
+      { title: "General Settings", href: "/admin/settings" },
+      { title: "Delivery Charges", href: "/admin/settings/delivery-charges" },
+      { title: "Push Notifications", href: "/admin/settings/notifications" },
+      { title: "Service Settings", href: "/admin/settings/service" },
+    ],
   },
 ];
 
@@ -52,14 +77,35 @@ export function AdminSidebar() {
       </div>
       <nav className="flex-1">
         {menuItems.map((item) => (
-          <button
-            key={item.title}
-            onClick={() => navigate(item.href)}
-            className="flex w-full items-center gap-3 px-6 py-3 text-gray-700 hover:bg-gray-100"
-          >
-            <item.icon className="h-5 w-5" />
-            <span>{item.title}</span>
-          </button>
+          <div key={item.title}>
+            {item.subItems ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex w-full items-center gap-3 px-6 py-3 text-gray-700 hover:bg-gray-100">
+                  <item.icon className="h-5 w-5" />
+                  <span>{item.title}</span>
+                  <ChevronDown className="ml-auto h-4 w-4" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56">
+                  {item.subItems.map((subItem) => (
+                    <DropdownMenuItem
+                      key={subItem.href}
+                      onClick={() => navigate(subItem.href)}
+                    >
+                      {subItem.title}
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <button
+                onClick={() => navigate(item.href)}
+                className="flex w-full items-center gap-3 px-6 py-3 text-gray-700 hover:bg-gray-100"
+              >
+                <item.icon className="h-5 w-5" />
+                <span>{item.title}</span>
+              </button>
+            )}
+          </div>
         ))}
       </nav>
     </div>
