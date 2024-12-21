@@ -1,7 +1,7 @@
 import { ShoppingBag, Store, Package, Pill, Heart, Leaf, Clock } from "lucide-react";
 import CategoryCard from "./CategoryCard";
 
-const categories = [
+export const categories = [
   {
     title: "Food Delivery",
     icon: <Store className="h-6 w-6 text-primary" />,
