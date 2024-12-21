@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { AdminHeader } from "@/components/admin/AdminHeader";
-import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -112,38 +110,33 @@ export default function Restaurants() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <AdminHeader />
-      <div className="flex">
-        <AdminSidebar />
-        <main className="flex-1 p-6 ml-[300px]">
-          <div className="container mx-auto">
-            <BackButton to="/" label="Back to Home" />
-            <div className="flex justify-between items-center mb-8">
-              <h1 className="text-3xl font-bold dark:text-white">Restaurant Management</h1>
-              <Button onClick={() => setShowAddForm(true)}>
-                Add New Restaurant
-              </Button>
-            </div>
+    <div className="space-y-4">
+      <BackButton to="/" label="Back to Home" />
+      <div className="flex justify-between items-center">
+        <h1 className="text-3xl font-bold">Restaurant Management</h1>
+        <Button onClick={() => setShowAddForm(true)}>
+          Add New Restaurant
+        </Button>
+      </div>
 
-            {showAddForm ? (
-              <AddRestaurantForm onClose={() => setShowAddForm(false)} />
-            ) : (
-              <>
-                {selectedRestaurant && (
-                  <>
-                    <RestaurantMetrics
-                      restaurant={selectedRestaurant}
-                      onMetricsUpdate={(metrics) => handleMetricsUpdate(selectedRestaurant.id, metrics)}
-                    />
-                    <DocumentVerification
-                      documents={selectedRestaurant.documents}
-                      onDocumentUpdate={(documents) => handleDocumentUpdate(selectedRestaurant.id, documents)}
-                    />
-                  </>
-                )}
+      {showAddForm ? (
+        <AddRestaurantForm onClose={() => setShowAddForm(false)} />
+      ) : (
+        <>
+          {selectedRestaurant && (
+            <>
+              <RestaurantMetrics
+                restaurant={selectedRestaurant}
+                onMetricsUpdate={(metrics) => handleMetricsUpdate(selectedRestaurant.id, metrics)}
+              />
+              <DocumentVerification
+                documents={selectedRestaurant.documents}
+                onDocumentUpdate={(documents) => handleDocumentUpdate(selectedRestaurant.id, documents)}
+              />
+            </>
+          )}
 
-                <Card>
+          <Card>
                   <CardHeader>
                     <CardTitle>Restaurants List</CardTitle>
                   </CardHeader>
@@ -202,12 +195,9 @@ export default function Restaurants() {
                       </div>
                     </div>
                   </CardContent>
-                </Card>
-              </>
-            )}
-          </div>
-        </main>
-      </div>
+          </Card>
+        </>
+      )}
     </div>
   );
 }

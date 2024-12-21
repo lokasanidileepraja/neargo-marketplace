@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { AdminHeader } from "@/components/admin/AdminHeader";
-import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -8,15 +6,10 @@ import BackButton from "@/components/BackButton";
 
 export default function Settings() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <AdminHeader />
-      <div className="flex">
-        <AdminSidebar />
-        <main className="flex-1 p-6 ml-[300px]">
-          <div className="container mx-auto">
-            <BackButton to="/" label="Back to Home" />
-            <h1 className="text-3xl font-bold mb-8">Platform Settings</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div className="space-y-4">
+      <BackButton to="/" label="Back to Home" />
+      <h1 className="text-3xl font-bold">Platform Settings</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <Card>
             <CardHeader>
               <CardTitle>General Settings</CardTitle>
@@ -97,9 +90,6 @@ export default function Settings() {
               <Button>Update Delivery Zones</Button>
             </CardContent>
           </Card>
-        </div>
-          </div>
-        </main>
       </div>
     </div>
   );
