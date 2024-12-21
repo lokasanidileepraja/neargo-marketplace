@@ -17,9 +17,8 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <Link to="/" className="flex items-center gap-2">
-              <img src="/neargo-logo.png" alt="NearGo" className="h-8 w-auto" />
-              <span className="text-xl font-bold">NearGo</span>
+            <Link to="/" className="flex items-center">
+              <span className="text-xl font-bold text-primary">NearGo</span>
             </Link>
           </div>
 
@@ -48,15 +47,15 @@ const Navbar = () => {
                   <User className="h-5 w-5" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
+              <DropdownMenuContent align="end" className="w-48">
                 <DropdownMenuItem>
-                  <Link to="/profile" className="flex items-center gap-2">
+                  <Link to="/profile" className="flex items-center gap-2 w-full">
                     <User className="h-4 w-4" />
                     Profile
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link to="/admin" className="flex items-center gap-2">
+                  <Link to="/admin/dashboard" className="flex items-center gap-2 w-full">
                     <Settings className="h-4 w-4" />
                     Admin Dashboard
                   </Link>

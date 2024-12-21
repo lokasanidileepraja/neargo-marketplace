@@ -43,18 +43,19 @@ export function CartProvider({ children }: { children: ReactNode }) {
     });
 
     toast({
-      title: "Item added to cart",
-      description: `${newItem.name} has been added to your cart.`
+      title: "Added to cart",
+      description: `${newItem.name} has been added to your cart.`,
+      duration: 2000,
     });
   };
 
   const removeItem = (id: number) => {
-    setItems(items => items.filter(item => item.id !== id));
+    setItems(currentItems => currentItems.filter(item => item.id !== id));
   };
 
   const updateQuantity = (id: number, quantity: number) => {
-    setItems(items =>
-      items.map(item =>
+    setItems(currentItems =>
+      currentItems.map(item =>
         item.id === id
           ? { ...item, quantity: Math.max(0, quantity) }
           : item
