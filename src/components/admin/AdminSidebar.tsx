@@ -23,10 +23,7 @@ const menuItems = [
   {
     title: "Restaurants",
     icon: Store,
-    subItems: [
-      { title: "Add Restaurant", href: "/admin/restaurants/add" },
-      { title: "Restaurant List", href: "/admin/restaurants" },
-    ],
+    href: "/admin/restaurants",
   },
   {
     title: "Drivers",
@@ -54,19 +51,11 @@ export function AdminSidebar() {
       <div className="overflow-y-auto h-full">
         {menuItems.map((item) => (
           <div key={item.title} className="mb-2">
-            {item.subItems ? (
-              <SidebarGroup
-                title={item.title}
-                icon={item.icon}
-                subItems={item.subItems}
-              />
-            ) : (
-              <SidebarItem
-                title={item.title}
-                icon={item.icon}
-                href={item.href}
-              />
-            )}
+            <SidebarItem
+              title={item.title}
+              icon={item.icon}
+              href={item.href}
+            />
           </div>
         ))}
       </div>
