@@ -2,12 +2,10 @@ import { useState } from "react";
 import { AdminHeader } from "@/components/admin/AdminHeader";
 import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import BackButton from "@/components/BackButton";
-import { Star, Search, AlertCircle } from "lucide-react";
+import { Search } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -15,42 +13,52 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { RestaurantMetrics } from "@/components/admin/restaurants/RestaurantMetrics";
+import { DocumentVerification } from "@/components/admin/restaurants/DocumentVerification";
+import { RestaurantList } from "@/components/admin/restaurants/RestaurantList";
+import { Restaurant } from "@/types/restaurant";
+import BackButton from "@/components/BackButton";
+
+// Dummy data
+const initialRestaurants: Restaurant[] = [
+  {
+    id: 1,
+    name: "Pizza Palace",
+    rating: 5,
+    products: 45,
+    orders: 1200,
+    status: "verified",
+    isOnline: true,
+    email: "info@pizzapalace.com",
+    phone: "+1234567890",
+    address: "123 Main St",
+    cuisine: "Italian",
+    openingHours: "09:00",
+    closingHours: "22:00",
+    deliveryRadius: 5,
+    minimumOrder: 15,
+    documents: {
+      businessLicense: "https://example.com/license1.pdf",
+      foodLicense: "https://example.com/food1.pdf",
+      taxCertificate: "https://example.com/tax1.pdf",
+    },
+    metrics: {
+      averageDeliveryTime: 30,
+      customerSatisfaction: 95,
+      orderAcceptanceRate: 98,
+      revenue: 50000,
+    },
+  },
+  // ... Add more dummy restaurants here
+];
 
 export default function Restaurants() {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [statusFilter, setStatusFilter] = useState("all");
+  const [restaurants, setRestaurants] = useState<Restaurant[]>(initialRestaurants);
+  const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
   const { toast } = useToast();
-  
-  const restaurants = [
-    {
-      id: 1,
-      name: "Pizza Palace",
-      rating: 5,
-      products: 45,
-      orders: 1200,
-      status: "verified",
-      isOnline: true,
-    },
-    {
-      id: 2,
-      name: "Burger House",
-      rating: 5,
-      products: 30,
-      orders: 800,
-      status: "pending",
-      isOnline: false,
-    },
-    {
-      id: 3,
-      name: "Sushi Express",
-      rating: 5,
-      products: 60,
-      orders: 1500,
-      status: "verified",
-      isOnline: true,
-    },
-  ];
 
   const handleStatusChange = (status: string) => {
     setStatusFilter(status);
@@ -60,22 +68,28 @@ export default function Restaurants() {
     });
   };
 
-  const renderRating = (rating: number) => {
-    return [...Array(rating)].map((_, i) => (
-      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+  const handleMetricsUpdate = (restaurantId: number, metrics: Restaurant['metrics']) => {
+    setRestaurants(restaurants.map(restaurant => 
+      restaurant.id === restaurantId 
+        ? { ...restaurant, metrics }
+        : restaurant
     ));
+    toast({
+      title: "Metrics Updated",
+      description: "Restaurant metrics have been updated successfully",
+    });
   };
 
-  const getStatusBadgeClass = (status: string) => {
-    return status === "verified"
-      ? "bg-green-100 text-green-800"
-      : "bg-yellow-100 text-yellow-800";
-  };
-
-  const getOnlineStatusClass = (isOnline: boolean) => {
-    return isOnline
-      ? "bg-green-100 text-green-800"
-      : "bg-red-100 text-red-800";
+  const handleDocumentUpdate = (restaurantId: number, documents: Restaurant['documents']) => {
+    setRestaurants(restaurants.map(restaurant => 
+      restaurant.id === restaurantId 
+        ? { ...restaurant, documents }
+        : restaurant
+    ));
+    toast({
+      title: "Documents Updated",
+      description: "Restaurant documents have been updated successfully",
+    });
   };
 
   return (
@@ -88,54 +102,29 @@ export default function Restaurants() {
             <BackButton to="/" label="Back to Home" />
             <div className="flex justify-between items-center mb-8">
               <h1 className="text-3xl font-bold dark:text-white">Restaurant Management</h1>
-              <Button onClick={() => toast({
-                title: "Coming Soon",
-                description: "Restaurant onboarding feature will be available soon!",
-              })}>
+              <Button onClick={() => {
+                setSelectedRestaurant(null);
+                toast({
+                  title: "Add Restaurant",
+                  description: "Opening restaurant form...",
+                });
+              }}>
                 Add New Restaurant
               </Button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Total Restaurants</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-3xl font-bold">{restaurants.length}</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Verified</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-3xl font-bold">
-                    {restaurants.filter(r => r.status === "verified").length}
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Pending</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-3xl font-bold">
-                    {restaurants.filter(r => r.status === "pending").length}
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Online Now</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-3xl font-bold">
-                    {restaurants.filter(r => r.isOnline).length}
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
+            {selectedRestaurant && (
+              <>
+                <RestaurantMetrics
+                  restaurant={selectedRestaurant}
+                  onMetricsUpdate={(metrics) => handleMetricsUpdate(selectedRestaurant.id, metrics)}
+                />
+                <DocumentVerification
+                  documents={selectedRestaurant.documents}
+                  onDocumentUpdate={(documents) => handleDocumentUpdate(selectedRestaurant.id, documents)}
+                />
+              </>
+            )}
 
             <Card>
               <CardHeader>
@@ -167,69 +156,10 @@ export default function Restaurants() {
                   </Select>
                 </div>
 
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>No.</TableHead>
-                      <TableHead>Restaurant Name</TableHead>
-                      <TableHead>Rating</TableHead>
-                      <TableHead>Products</TableHead>
-                      <TableHead>Orders</TableHead>
-                      <TableHead>Status</TableHead>
-                      <TableHead>Online Status</TableHead>
-                      <TableHead>Actions</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {restaurants.map((restaurant) => (
-                      <TableRow key={restaurant.id}>
-                        <TableCell>{restaurant.id}</TableCell>
-                        <TableCell>{restaurant.name}</TableCell>
-                        <TableCell>
-                          <div className="flex">
-                            {renderRating(restaurant.rating)}
-                          </div>
-                        </TableCell>
-                        <TableCell>{restaurant.products}</TableCell>
-                        <TableCell>{restaurant.orders}</TableCell>
-                        <TableCell>
-                          <span className={`px-2 py-1 rounded-full text-xs ${getStatusBadgeClass(restaurant.status)}`}>
-                            {restaurant.status}
-                          </span>
-                        </TableCell>
-                        <TableCell>
-                          <span className={`px-2 py-1 rounded-full text-xs ${getOnlineStatusClass(restaurant.isOnline)}`}>
-                            {restaurant.isOnline ? "online" : "offline"}
-                          </span>
-                        </TableCell>
-                        <TableCell>
-                          <div className="flex gap-2">
-                            <Button 
-                              variant="outline" 
-                              size="sm"
-                              onClick={() => toast({
-                                title: "View Restaurant",
-                                description: "Restaurant details view coming soon!",
-                              })}
-                            >
-                              View
-                            </Button>
-                            <Button 
-                              variant="outline" 
-                              size="sm"
-                              onClick={() => toast({
-                                title: "Edit Restaurant",
-                                description: "Restaurant edit feature coming soon!",
-                              })}
-                            >
-                              Edit
-                            </Button>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                <RestaurantList
+                  restaurants={restaurants}
+                  onEdit={setSelectedRestaurant}
+                />
 
                 <div className="flex justify-between items-center mt-4">
                   <p className="text-sm text-gray-500">
@@ -248,7 +178,7 @@ export default function Restaurants() {
                       variant="outline"
                       size="sm"
                       onClick={() => setCurrentPage(currentPage + 1)}
-                      disabled={true} // Disabled for demo, would normally check against total pages
+                      disabled={true}
                     >
                       Next
                     </Button>
