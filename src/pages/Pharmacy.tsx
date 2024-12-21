@@ -40,7 +40,6 @@ const Pharmacy = () => {
               <KiranaShopCard
                 key={shop.id}
                 shop={shop}
-                onViewItems={() => navigate(`/pharmacy/${shop.id}`)}
               />
             ))}
           </div>

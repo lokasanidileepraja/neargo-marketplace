@@ -40,7 +40,6 @@ const QuickMeals = () => {
               <KiranaShopCard
                 key={shop.id}
                 shop={shop}
-                onViewItems={() => navigate(`/quick-meals/${shop.id}`)}
               />
             ))}
           </div>

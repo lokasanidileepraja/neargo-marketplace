@@ -40,7 +40,6 @@ const HealthyOptions = () => {
               <KiranaShopCard
                 key={shop.id}
                 shop={shop}
-                onViewItems={() => navigate(`/healthy-options/${shop.id}`)}
               />
             ))}
           </div>

@@ -40,7 +40,6 @@ const LocalFavorites = () => {
               <KiranaShopCard
                 key={shop.id}
                 shop={shop}
-                onViewItems={() => navigate(`/local-favorites/${shop.id}`)}
               />
             ))}
           </div>

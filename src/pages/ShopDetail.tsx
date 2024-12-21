@@ -35,9 +35,8 @@ const ShopDetail = () => {
       id: item.id,
       name: item.name,
       price: item.price,
-      quantity: 1,
-      shopId: shop.id,
-      shopName: shop.name,
+      image: item.image,
+      shopId: shop.id
     });
     
     toast({
