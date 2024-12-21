@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { CartProvider } from "@/contexts/CartContext";
 import Index from "@/pages/Index";
 import Cart from "@/pages/Cart";
 import Checkout from "@/pages/Checkout";
@@ -27,33 +28,35 @@ import RestaurantMenu from "@/pages/RestaurantMenu";
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/order-confirmation" element={<OrderConfirmation />} />
-        <Route path="/food-delivery" element={<FoodDelivery />} />
-        <Route path="/food-delivery/:id" element={<RestaurantMenu />} />
-        <Route path="/groceries" element={<Groceries />} />
-        <Route path="/pharmacy" element={<Pharmacy />} />
-        <Route path="/local-favorites" element={<LocalFavorites />} />
-        <Route path="/healthy-options" element={<HealthyOptions />} />
-        <Route path="/quick-meals" element={<QuickMeals />} />
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/admin/orders" element={<Orders />} />
-        <Route path="/admin/orders/:status" element={<Orders />} />
-        <Route path="/admin/restaurants" element={<Restaurants />} />
-        <Route path="/admin/restaurants/add" element={<AddRestaurant />} />
-        <Route path="/admin/restaurants/unapproved" element={<UnapprovedRestaurants />} />
-        <Route path="/admin/restaurants/blocked" element={<BlockedRestaurants />} />
-        <Route path="/admin/restaurants/rejected" element={<RejectedRestaurants />} />
-        <Route path="/admin/drivers" element={<Drivers />} />
-        <Route path="/admin/finances" element={<Finances />} />
-        <Route path="/admin/settings" element={<Settings />} />
-        <Route path="/admin/settings/delivery-charges" element={<DeliveryCharges />} />
-        <Route path="/admin/settings/notifications" element={<PushNotifications />} />
-        <Route path="/admin/settings/service" element={<ServiceSettings />} />
-      </Routes>
+      <CartProvider>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/order-confirmation" element={<OrderConfirmation />} />
+          <Route path="/food-delivery" element={<FoodDelivery />} />
+          <Route path="/food-delivery/:id" element={<RestaurantMenu />} />
+          <Route path="/groceries" element={<Groceries />} />
+          <Route path="/pharmacy" element={<Pharmacy />} />
+          <Route path="/local-favorites" element={<LocalFavorites />} />
+          <Route path="/healthy-options" element={<HealthyOptions />} />
+          <Route path="/quick-meals" element={<QuickMeals />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin/orders" element={<Orders />} />
+          <Route path="/admin/orders/:status" element={<Orders />} />
+          <Route path="/admin/restaurants" element={<Restaurants />} />
+          <Route path="/admin/restaurants/add" element={<AddRestaurant />} />
+          <Route path="/admin/restaurants/unapproved" element={<UnapprovedRestaurants />} />
+          <Route path="/admin/restaurants/blocked" element={<BlockedRestaurants />} />
+          <Route path="/admin/restaurants/rejected" element={<RejectedRestaurants />} />
+          <Route path="/admin/drivers" element={<Drivers />} />
+          <Route path="/admin/finances" element={<Finances />} />
+          <Route path="/admin/settings" element={<Settings />} />
+          <Route path="/admin/settings/delivery-charges" element={<DeliveryCharges />} />
+          <Route path="/admin/settings/notifications" element={<PushNotifications />} />
+          <Route path="/admin/settings/service" element={<ServiceSettings />} />
+        </Routes>
+      </CartProvider>
     </Router>
   );
 }
