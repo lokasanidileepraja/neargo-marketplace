@@ -2,115 +2,142 @@ import { useState } from "react";
 import { AdminHeader } from "@/components/admin/AdminHeader";
 import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
-import BackButton from "@/components/BackButton";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { Calendar } from "@/components/ui/calendar";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChartContainer } from "@/components/ui/chart";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 
 const data = [
-  { month: 'Jan', revenue: 4000, commission: 2400 },
-  { month: 'Feb', revenue: 3000, commission: 1398 },
-  { month: 'Mar', revenue: 2000, commission: 9800 },
-  { month: 'Apr', revenue: 2780, commission: 3908 },
-  { month: 'May', revenue: 1890, commission: 4800 },
-  { month: 'Jun', revenue: 2390, commission: 3800 },
+  { day: 'Mon', earnings: 1200 },
+  { day: 'Tue', earnings: 2100 },
+  { day: 'Wed', earnings: 1500 },
+  { day: 'Thu', earnings: 2600 },
+  { day: 'Fri', earnings: 3000 },
+  { day: 'Sat', earnings: 1800 },
+  { day: 'Sun', earnings: 1000 },
 ];
 
 export default function Finances() {
-  const [sidebarOpen] = useState(true);
+  const [date, setDate] = useState<Date | undefined>(new Date());
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <AdminHeader />
       <div className="flex">
         <AdminSidebar />
         <main className="flex-1 p-6 ml-[300px]">
           <div className="container mx-auto">
-            <BackButton to="/" label="Back to Home" />
-            <h1 className="text-3xl font-bold mb-8">Financial Management</h1>
+            <div className="mb-6">
+              <h1 className="text-3xl font-bold text-foreground">Earnings</h1>
+              <p className="text-muted-foreground">Track revenue and financial metrics</p>
+            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
               <Card>
-                <CardHeader>
-                  <CardTitle>Total Revenue</CardTitle>
+                <CardHeader className="flex flex-row items-center justify-between pb-2">
+                  <CardTitle className="text-sm font-medium text-muted-foreground">Total Revenue</CardTitle>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-muted-foreground"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-3xl font-bold">₹89,012</p>
+                  <div className="text-2xl font-bold">$45,231.89</div>
+                  <p className="text-xs text-success">+20.1% from last month</p>
                 </CardContent>
               </Card>
+
               <Card>
-                <CardHeader>
-                  <CardTitle>Commission Earned</CardTitle>
+                <CardHeader className="flex flex-row items-center justify-between pb-2">
+                  <CardTitle className="text-sm font-medium text-muted-foreground">Admin Charges</CardTitle>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-muted-foreground"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6.5a2 2 0 1 0 0 4h3a2 2 0 1 1 0 4H7"/></svg>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-3xl font-bold">₹12,345</p>
+                  <div className="text-2xl font-bold">$4,523.19</div>
+                  <p className="text-xs text-success">+15% from last month</p>
                 </CardContent>
               </Card>
+
               <Card>
-                <CardHeader>
-                  <CardTitle>Pending Payouts</CardTitle>
+                <CardHeader className="flex flex-row items-center justify-between pb-2">
+                  <CardTitle className="text-sm font-medium text-muted-foreground">Driver Earnings</CardTitle>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-muted-foreground"><path d="M8 10h12M8 14h12M8 18h12M3 10h1M3 14h1M3 18h1"/></svg>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-3xl font-bold">₹5,678</p>
+                  <div className="text-2xl font-bold">$12,234.56</div>
+                  <p className="text-xs text-success">+12% from last month</p>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader className="flex flex-row items-center justify-between pb-2">
+                  <CardTitle className="text-sm font-medium text-muted-foreground">Total Orders</CardTitle>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-muted-foreground"><path d="M3 3h18v18H3z"/><path d="M7 7h10v10H7z"/></svg>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">2,345</div>
+                  <p className="text-xs text-success">+8% from last month</p>
                 </CardContent>
               </Card>
             </div>
 
-            <Card className="mb-8">
-              <CardHeader>
-                <CardTitle>Revenue Overview</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="h-[300px]">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={data}>
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="month" />
-                      <YAxis />
-                      <Tooltip />
-                      <Line type="monotone" dataKey="revenue" stroke="#8884d8" />
-                      <Line type="monotone" dataKey="commission" stroke="#82ca9d" />
-                    </LineChart>
-                  </ResponsiveContainer>
-                </div>
-              </CardContent>
-            </Card>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <Card className="col-span-2">
+                <CardHeader>
+                  <CardTitle>Earnings Overview</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="h-[300px]">
+                    <ChartContainer config={{}}>
+                      <BarChart data={data}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="day" />
+                        <YAxis />
+                        <Tooltip />
+                        <Bar dataKey="earnings" fill="#2B7FFF" />
+                      </BarChart>
+                    </ChartContainer>
+                  </div>
+                </CardContent>
+              </Card>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>Recent Transactions</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Transaction ID</TableHead>
-                      <TableHead>Type</TableHead>
-                      <TableHead>Amount</TableHead>
-                      <TableHead>Status</TableHead>
-                      <TableHead>Date</TableHead>
-                      <TableHead>Actions</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    <TableRow>
-                      <TableCell>#TRX001</TableCell>
-                      <TableCell>Commission</TableCell>
-                      <TableCell>₹450</TableCell>
-                      <TableCell>
-                        <span className="px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">
-                          Completed
-                        </span>
-                      </TableCell>
-                      <TableCell>2024-03-20</TableCell>
-                      <TableCell>
-                        <Button variant="outline" size="sm">View Details</Button>
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </CardContent>
-            </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Filters</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div>
+                    <h3 className="mb-4 text-sm font-medium">Date Range</h3>
+                    <Calendar
+                      mode="single"
+                      selected={date}
+                      onSelect={setDate}
+                      className="rounded-md border"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="mb-4 text-sm font-medium">Driver</h3>
+                    <Select>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select driver" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="all">All Drivers</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <h3 className="mb-4 text-sm font-medium">Store</h3>
+                    <Select>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select store" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="all">All Stores</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </main>
       </div>
