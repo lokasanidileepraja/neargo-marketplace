@@ -8,13 +8,12 @@ interface SidebarItemProps {
   onClose: () => void;
 }
 
-export function SidebarItem({ title, icon: Icon, href, onClose }: SidebarItemProps) {
+export function SidebarItem({ title, icon: Icon, href }: SidebarItemProps) {
   const navigate = useNavigate();
 
   const handleClick = () => {
     if (href) {
       navigate(href);
-      onClose();
     }
   };
 

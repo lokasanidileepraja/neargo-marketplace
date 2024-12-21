@@ -13,7 +13,7 @@ interface SidebarGroupProps {
   onClose: () => void;
 }
 
-export function SidebarGroup({ title, icon: Icon, subItems, onClose }: SidebarGroupProps) {
+export function SidebarGroup({ title, icon: Icon, subItems }: SidebarGroupProps) {
   return (
     <div>
       <div className="flex items-center gap-3 px-6 py-3 text-gray-700">
@@ -26,7 +26,7 @@ export function SidebarGroup({ title, icon: Icon, subItems, onClose }: SidebarGr
             key={subItem.href}
             title={subItem.title}
             href={subItem.href}
-            onClose={onClose}
+            onClose={() => {}}
           />
         ))}
       </div>

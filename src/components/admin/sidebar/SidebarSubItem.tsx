@@ -6,12 +6,11 @@ interface SidebarSubItemProps {
   onClose: () => void;
 }
 
-export function SidebarSubItem({ title, href, onClose }: SidebarSubItemProps) {
+export function SidebarSubItem({ title, href }: SidebarSubItemProps) {
   const navigate = useNavigate();
 
   const handleClick = () => {
     navigate(href);
-    onClose();
   };
 
   return (
