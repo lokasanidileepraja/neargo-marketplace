@@ -37,10 +37,10 @@ const LocationButton = () => {
     <Button
       variant="outline"
       size="icon"
-      className="h-12 w-12 rounded-full"
+      className="h-12 w-12 rounded-full border-gray-200 hover:bg-gray-50"
       onClick={handleLocationClick}
     >
-      <MapPin className="h-5 w-5" />
+      <MapPin className="h-5 w-5 text-gray-600" />
     </Button>
   );
 };

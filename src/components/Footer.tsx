@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-50 pt-16 pb-12 mt-20 border-t">
+    <footer className="bg-white pt-16 pb-12 mt-20 border-t border-gray-100">
       <div className="container mx-auto px-4">
         {/* Brand Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
@@ -79,7 +79,7 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="text-center pt-8 border-t border-gray-200">
+        <div className="text-center pt-8 border-t border-gray-100">
           <p className="text-gray-600">© {new Date().getFullYear()} NearGo. All rights reserved.</p>
         </div>
       </div>

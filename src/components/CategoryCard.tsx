@@ -13,7 +13,7 @@ const CategoryCard = ({ title, icon, description, path }: CategoryCardProps) => 
 
   return (
     <Card 
-      className="p-6 cursor-pointer hover:shadow-lg transition-shadow bg-white"
+      className="p-6 cursor-pointer hover:shadow-lg transition-all duration-300 bg-white border border-gray-100 hover:border-primary/20"
       onClick={() => navigate(path)}
     >
       <div className="flex flex-col items-center text-center gap-4">
