@@ -35,6 +35,12 @@ const Login = () => {
         });
         navigate("/");
       }
+      if (event === "SIGNED_OUT") {
+        toast({
+          title: "Signed out",
+          description: "You have been signed out",
+        });
+      }
     });
 
     // Cleanup subscription
@@ -62,7 +68,7 @@ const Login = () => {
           }}
           theme="light"
           providers={[]}
-          redirectTo={window.location.origin}
+          redirectTo={`${window.location.origin}/`}
         />
       </div>
     </div>
