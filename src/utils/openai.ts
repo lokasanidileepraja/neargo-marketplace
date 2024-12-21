@@ -11,7 +11,7 @@ export const generateResponse = async (openai: OpenAI, prompt: string) => {
   try {
     const completion = await openai.chat.completions.create({
       messages: [{ role: 'user', content: prompt }],
-      model: 'gpt-4',
+      model: 'gpt-4o',
     });
 
     return completion.choices[0].message.content;
