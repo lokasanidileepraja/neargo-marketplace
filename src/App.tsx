@@ -14,6 +14,16 @@ import Checkout from './pages/Checkout';
 import Orders from './pages/Orders';
 import OrderSuccess from './pages/OrderSuccess';
 import AdminDashboard from './pages/admin/Dashboard';
+import AdminDispatcher from './pages/admin/Dispatcher';
+import AdminDrivers from './pages/admin/Drivers';
+import AdminOrders from './pages/admin/Orders';
+import AdminRestaurants from './pages/admin/Restaurants';
+import AdminFinances from './pages/admin/Finances';
+import AdminPromocodes from './pages/admin/Promocodes';
+import AdminReviews from './pages/admin/Reviews';
+import AdminDocuments from './pages/admin/Documents';
+import AdminSettings from './pages/admin/Settings';
+import AdminPages from './pages/admin/Pages';
 import { AdminLayout } from './components/admin/AdminLayout';
 
 function App() {
@@ -37,6 +47,16 @@ function App() {
       {/* Admin Routes */}
       <Route path="/admin" element={<AdminLayout />}>
         <Route path="dashboard" element={<AdminDashboard />} />
+        <Route path="dispatcher" element={<AdminDispatcher />} />
+        <Route path="drivers" element={<AdminDrivers />} />
+        <Route path="orders" element={<AdminOrders />} />
+        <Route path="restaurants" element={<AdminRestaurants />} />
+        <Route path="finances" element={<AdminFinances />} />
+        <Route path="promocodes" element={<AdminPromocodes />} />
+        <Route path="reviews" element={<AdminReviews />} />
+        <Route path="documents" element={<AdminDocuments />} />
+        <Route path="settings" element={<AdminSettings />} />
+        <Route path="pages" element={<AdminPages />} />
       </Route>
     </Routes>
   );
