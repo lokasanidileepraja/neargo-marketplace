@@ -13,20 +13,24 @@ const Groceries = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      <div className="container py-8">
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink onClick={() => navigate("/")}>Home</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>Groceries</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
+      <div className="fixed top-16 left-0 right-0 bg-white border-b z-40 py-4">
+        <div className="container">
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink onClick={() => navigate("/")}>Home</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>Groceries</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
+      </div>
 
-        <div className="mt-8 space-y-8">
+      <div className="container pt-32 pb-8">
+        <div className="space-y-8">
           <div className="flex items-center justify-between">
             <h1 className="text-3xl font-bold">Grocery Stores Near You</h1>
             <Button variant="outline" onClick={() => navigate("/")}>
