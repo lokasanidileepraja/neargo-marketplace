@@ -1,17 +1,17 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { CartProvider } from "@/contexts/CartContext";
-import Home from "@/pages/Home";
-import Menu from "@/pages/Menu";
-import Cart from "@/pages/Cart";
-import Checkout from "@/pages/Checkout";
-import OrderSuccess from "@/pages/OrderSuccess";
-import AdminDashboard from "@/pages/admin/Dashboard";
-import AdminOrders from "@/pages/admin/Orders";
-import AdminRestaurants from "@/pages/admin/Restaurants";
-import AdminFinances from "@/pages/admin/Finances";
-import AdminSettings from "@/pages/admin/Settings";
-import Drivers from "@/pages/admin/Drivers";
-import AddDriver from "@/pages/admin/drivers/AddDriver";
+import { CartProvider } from "./contexts/CartContext";
+import Home from "./pages/Home";
+import Menu from "./pages/Menu";
+import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
+import OrderSuccess from "./pages/OrderSuccess";
+import AdminDashboard from "./pages/admin/Dashboard";
+import AdminOrders from "./pages/admin/Orders";
+import AdminRestaurants from "./pages/admin/Restaurants";
+import AdminFinances from "./pages/admin/Finances";
+import AdminSettings from "./pages/admin/Settings";
+import Drivers from "./pages/admin/Drivers";
+import AddDriver from "./pages/admin/drivers/AddDriver";
 
 function App() {
   return (
