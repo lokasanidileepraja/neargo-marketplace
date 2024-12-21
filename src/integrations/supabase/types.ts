@@ -9,6 +9,50 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      products: {
+        Row: {
+          category: string | null
+          created_at: string
+          description: string | null
+          id: string
+          image: string | null
+          name: string
+          price: number
+          restaurant_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          image?: string | null
+          name: string
+          price: number
+          restaurant_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          image?: string | null
+          name?: string
+          price?: number
+          restaurant_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "products_restaurant_id_fkey"
+            columns: ["restaurant_id"]
+            isOneToOne: false
+            referencedRelation: "restaurants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -30,6 +74,75 @@ export type Database = {
           id?: string
           updated_at?: string
           username?: string | null
+        }
+        Relationships: []
+      }
+      restaurants: {
+        Row: {
+          address: string | null
+          closing_hours: string | null
+          created_at: string
+          cuisine: string | null
+          delivery_radius: number | null
+          description: string | null
+          email: string
+          id: string
+          image: string | null
+          is_online: boolean | null
+          minimum_order: number | null
+          name: string
+          opening_hours: string | null
+          orders_count: number | null
+          owner_id: string | null
+          phone: string | null
+          products_count: number | null
+          rating: number | null
+          status: string | null
+          updated_at: string
+        }
+        Insert: {
+          address?: string | null
+          closing_hours?: string | null
+          created_at?: string
+          cuisine?: string | null
+          delivery_radius?: number | null
+          description?: string | null
+          email: string
+          id?: string
+          image?: string | null
+          is_online?: boolean | null
+          minimum_order?: number | null
+          name: string
+          opening_hours?: string | null
+          orders_count?: number | null
+          owner_id?: string | null
+          phone?: string | null
+          products_count?: number | null
+          rating?: number | null
+          status?: string | null
+          updated_at?: string
+        }
+        Update: {
+          address?: string | null
+          closing_hours?: string | null
+          created_at?: string
+          cuisine?: string | null
+          delivery_radius?: number | null
+          description?: string | null
+          email?: string
+          id?: string
+          image?: string | null
+          is_online?: boolean | null
+          minimum_order?: number | null
+          name?: string
+          opening_hours?: string | null
+          orders_count?: number | null
+          owner_id?: string | null
+          phone?: string | null
+          products_count?: number | null
+          rating?: number | null
+          status?: string | null
+          updated_at?: string
         }
         Relationships: []
       }
