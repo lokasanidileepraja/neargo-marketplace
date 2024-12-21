@@ -5,6 +5,8 @@ import { useToast } from "@/hooks/use-toast";
 import { RestaurantBasicInfo } from "./forms/RestaurantBasicInfo";
 import { RestaurantDetails } from "./forms/RestaurantDetails";
 import { RestaurantImages } from "./forms/RestaurantImages";
+import { supabase } from "@/integrations/supabase/client";
+import { useNavigate } from "react-router-dom";
 
 interface AddRestaurantFormProps {
   onClose: () => void;
@@ -12,9 +14,10 @@ interface AddRestaurantFormProps {
 
 export const AddRestaurantForm = ({ onClose }: AddRestaurantFormProps) => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
-    type: "food-delivery", // Default to first category
+    type: "food-delivery",
     deliveryMethods: ["delivery"],
     cuisine: "italian",
     description: "",
@@ -48,13 +51,68 @@ export const AddRestaurantForm = ({ onClose }: AddRestaurantFormProps) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
     
-    toast({
-      title: "Restaurant Added",
-      description: "The restaurant has been successfully added to the system.",
-    });
-    onClose();
+    try {
+      // Get the current user
+      const { data: { user } } = await supabase.auth.getUser();
+      
+      if (!user) {
+        toast({
+          title: "Error",
+          description: "You must be logged in to create a restaurant",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Upload the logo if provided
+      let logoUrl = null;
+      if (formData.logo) {
+        const { data: logoData, error: logoError } = await supabase.storage
+          .from('restaurants')
+          .upload(`logos/${Date.now()}-${formData.logo.name}`, formData.logo);
+
+        if (logoError) throw logoError;
+        logoUrl = logoData.path;
+      }
+
+      // Create the restaurant
+      const { data: restaurant, error } = await supabase
+        .from('restaurants')
+        .insert([
+          {
+            name: formData.name,
+            description: formData.description,
+            email: formData.email,
+            address: formData.address,
+            cuisine: formData.cuisine,
+            image: logoUrl,
+            owner_id: user.id,
+            status: 'pending',
+            is_online: false,
+          },
+        ])
+        .select()
+        .single();
+
+      if (error) throw error;
+
+      toast({
+        title: "Restaurant Added",
+        description: "The restaurant has been successfully added to the system.",
+      });
+
+      // Close the form and navigate back to the restaurants list
+      onClose();
+      navigate('/admin/restaurants');
+    } catch (error) {
+      console.error('Error creating restaurant:', error);
+      toast({
+        title: "Error",
+        description: "There was an error creating the restaurant. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
