@@ -15,7 +15,7 @@ export default function AdminDashboard() {
         <main className="flex-1 p-6 ml-[300px]">
           <div className="container mx-auto">
             <div className="flex items-center gap-4 mb-8">
-              <BackButton to="/admin/dashboard" label="Back to Dashboard" />
+              <BackButton to="/" label="Back to Home" />
             </div>
             <h1 className="text-3xl font-bold mb-8">Dashboard Overview</h1>
             <DashboardMetrics />
