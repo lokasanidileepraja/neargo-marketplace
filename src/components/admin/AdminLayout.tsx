@@ -8,8 +8,8 @@ export function AdminLayout() {
       <AdminHeader />
       <div className="flex">
         <AdminSidebar />
-        <main className="flex-1 p-6 ml-[300px] max-w-[calc(100%-300px)] bg-gray-50">
-          <div className="container mx-auto space-y-6">
+        <main className="flex-1 p-8 ml-[300px]">
+          <div className="max-w-[1400px] mx-auto w-full">
             <Outlet />
           </div>
         </main>
