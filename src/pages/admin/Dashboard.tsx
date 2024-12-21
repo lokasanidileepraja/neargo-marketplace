@@ -11,7 +11,7 @@ export default function AdminDashboard() {
     <div className="min-h-screen bg-gray-50">
       <AdminHeader />
       <div className="flex">
-        <AdminSidebar open={true} onClose={() => {}} />
+        <AdminSidebar />
         <main className="flex-1 p-6 ml-[300px]">
           <div className="container mx-auto">
             <div className="flex items-center gap-4 mb-8">

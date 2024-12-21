@@ -5,7 +5,7 @@ interface SidebarItemProps {
   title: string;
   icon: LucideIcon;
   href?: string;
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 export function SidebarItem({ title, icon: Icon, href }: SidebarItemProps) {

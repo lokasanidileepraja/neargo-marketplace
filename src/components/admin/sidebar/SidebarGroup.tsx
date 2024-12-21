@@ -10,7 +10,7 @@ interface SidebarGroupProps {
   title: string;
   icon: LucideIcon;
   subItems: SubItem[];
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 export function SidebarGroup({ title, icon: Icon, subItems }: SidebarGroupProps) {
@@ -26,7 +26,6 @@ export function SidebarGroup({ title, icon: Icon, subItems }: SidebarGroupProps)
             key={subItem.href}
             title={subItem.title}
             href={subItem.href}
-            onClose={() => {}}
           />
         ))}
       </div>

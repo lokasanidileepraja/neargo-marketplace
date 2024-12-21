@@ -7,16 +7,12 @@ import { Button } from "@/components/ui/button";
 import BackButton from "@/components/BackButton";
 
 export default function Settings() {
-  const [sidebarOpen] = useState(true);
-
   return (
     <div className="min-h-screen bg-gray-50">
       <AdminHeader />
       <div className="flex">
-        <div className="w-[300px]">
-          <AdminSidebar open={sidebarOpen} onClose={() => {}} />
-        </div>
-        <main className="flex-1 p-6">
+        <AdminSidebar />
+        <main className="flex-1 p-6 ml-[300px]">
           <div className="container mx-auto">
             <BackButton to="/admin" label="Back to Dashboard" />
             <h1 className="text-3xl font-bold mb-8">Platform Settings</h1>

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 interface SidebarSubItemProps {
   title: string;
   href: string;
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 export function SidebarSubItem({ title, href }: SidebarSubItemProps) {
