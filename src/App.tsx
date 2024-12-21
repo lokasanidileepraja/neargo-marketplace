@@ -32,11 +32,17 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/food-delivery" element={<FoodDelivery />} />
+      <Route path="/food-delivery/:id" element={<ShopDetail />} />
       <Route path="/groceries" element={<Groceries />} />
+      <Route path="/groceries/:id" element={<ShopDetail />} />
       <Route path="/pharmacy" element={<Pharmacy />} />
+      <Route path="/pharmacy/:id" element={<ShopDetail />} />
       <Route path="/healthy-options" element={<HealthyOptions />} />
+      <Route path="/healthy-options/:id" element={<ShopDetail />} />
       <Route path="/quick-meals" element={<QuickMeals />} />
+      <Route path="/quick-meals/:id" element={<ShopDetail />} />
       <Route path="/local-favorites" element={<LocalFavorites />} />
+      <Route path="/local-favorites/:id" element={<ShopDetail />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/menu" element={<Menu />} />
       <Route path="/restaurant-menu" element={<RestaurantMenu />} />
