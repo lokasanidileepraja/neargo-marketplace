@@ -6,6 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { categories } from "@/components/CategoriesGrid";
 
 interface RestaurantBasicInfoProps {
   formData: {
@@ -43,11 +44,14 @@ export const RestaurantBasicInfo = ({
             <SelectValue placeholder="Select type" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="fast-food">Fast Food</SelectItem>
-            <SelectItem value="casual">Casual Dining</SelectItem>
-            <SelectItem value="fine-dining">Fine Dining</SelectItem>
-            <SelectItem value="cafe">Café</SelectItem>
-            <SelectItem value="buffet">Buffet</SelectItem>
+            {categories.map((category) => (
+              <SelectItem 
+                key={category.path} 
+                value={category.path.replace('/', '')}
+              >
+                {category.title}
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>
       </div>

@@ -14,7 +14,7 @@ export const AddRestaurantForm = ({ onClose }: AddRestaurantFormProps) => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
-    type: "casual",
+    type: "food-delivery", // Default to first category
     deliveryMethods: ["delivery"],
     cuisine: "italian",
     description: "",
