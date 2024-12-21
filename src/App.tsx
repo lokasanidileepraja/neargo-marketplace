@@ -12,6 +12,7 @@ import RestaurantMenu from './pages/RestaurantMenu';
 import ShopDetail from './pages/ShopDetail';
 import Checkout from './pages/Checkout';
 import Orders from './pages/Orders';
+import Profile from './pages/Profile';
 import OrderSuccess from './pages/OrderSuccess';
 import { AdminLayout } from './components/admin/AdminLayout';
 import AdminDashboard from './pages/admin/Dashboard';
@@ -42,6 +43,7 @@ function App() {
       <Route path="/shop/:id" element={<ShopDetail />} />
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/orders" element={<Orders />} />
+      <Route path="/profile" element={<Profile />} />
       <Route path="/order-success" element={<OrderSuccess />} />
       
       {/* Admin Routes with proper layout */}
