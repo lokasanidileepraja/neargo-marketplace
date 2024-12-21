@@ -1,6 +1,7 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import Navbar from "@/components/Navbar";
 
 // Dummy data for testing
 const dummyOrders = [
@@ -40,49 +41,52 @@ const Orders = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">My Orders</h1>
-        <Button onClick={() => navigate("/")}>Continue Shopping</Button>
-      </div>
+    <div className="min-h-screen bg-gray-50">
+      <Navbar />
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-2xl font-bold">My Orders</h1>
+          <Button onClick={() => navigate("/")}>Continue Shopping</Button>
+        </div>
 
-      <div className="bg-white rounded-lg shadow">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Order ID</TableHead>
-              <TableHead>Date</TableHead>
-              <TableHead>Items</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead className="text-right">Total</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {dummyOrders.map((order) => (
-              <TableRow key={order.orderId}>
-                <TableCell className="font-medium">{order.orderId}</TableCell>
-                <TableCell>{order.date}</TableCell>
-                <TableCell>
-                  {order.items.map((item, index) => (
-                    <div key={index}>
-                      {item.quantity}x {item.name}
-                    </div>
-                  ))}
-                </TableCell>
-                <TableCell>
-                  <span className={`px-2 py-1 rounded-full text-sm ${
-                    order.status === 'Delivered' ? 'bg-green-100 text-green-800' :
-                    order.status === 'In Transit' ? 'bg-blue-100 text-blue-800' :
-                    'bg-yellow-100 text-yellow-800'
-                  }`}>
-                    {order.status}
-                  </span>
-                </TableCell>
-                <TableCell className="text-right">₹{order.total.toFixed(2)}</TableCell>
+        <div className="bg-white rounded-lg shadow">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Order ID</TableHead>
+                <TableHead>Date</TableHead>
+                <TableHead>Items</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead className="text-right">Total</TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHeader>
+            <TableBody>
+              {dummyOrders.map((order) => (
+                <TableRow key={order.orderId}>
+                  <TableCell className="font-medium">{order.orderId}</TableCell>
+                  <TableCell>{order.date}</TableCell>
+                  <TableCell>
+                    {order.items.map((item, index) => (
+                      <div key={index}>
+                        {item.quantity}x {item.name}
+                      </div>
+                    ))}
+                  </TableCell>
+                  <TableCell>
+                    <span className={`px-2 py-1 rounded-full text-sm ${
+                      order.status === 'Delivered' ? 'bg-green-100 text-green-800' :
+                      order.status === 'In Transit' ? 'bg-blue-100 text-blue-800' :
+                      'bg-yellow-100 text-yellow-800'
+                    }`}>
+                      {order.status}
+                    </span>
+                  </TableCell>
+                  <TableCell className="text-right">₹{order.total.toFixed(2)}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       </div>
     </div>
   );
