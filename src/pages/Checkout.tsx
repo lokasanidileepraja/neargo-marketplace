@@ -23,12 +23,20 @@ const Checkout = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, we would process the payment here
+    // Generate a stable order ID
+    const orderId = "ORD" + Date.now().toString(36).toUpperCase();
+    
     toast({
       title: "Order placed successfully!",
       description: "You will receive a confirmation email shortly."
     });
-    navigate("/order-confirmation");
+    
+    navigate("/order-confirmation", {
+      state: {
+        orderId,
+        deliveryAddress: formData.address
+      }
+    });
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

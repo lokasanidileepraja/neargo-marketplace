@@ -1,27 +1,27 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2 } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 
 const OrderConfirmation = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { items, total, clearCart } = useCart();
-  
-  useEffect(() => {
-    // Clear cart after showing the confirmation
-    return () => {
-      clearCart();
-    };
-  }, [clearCart]);
-
-  const orderDetails = {
-    orderId: "ORD" + Math.random().toString(36).substr(2, 9).toUpperCase(),
+  const [orderDetails, setOrderDetails] = useState({
+    orderId: location.state?.orderId || "ORD" + Math.random().toString(36).substr(2, 9).toUpperCase(),
     estimatedDelivery: new Date(Date.now() + 30 * 60000).toLocaleTimeString(),
     items: items,
     total: total,
-    deliveryAddress: "123 Main St, City, Country" // In a real app, this would come from the checkout form
-  };
+    deliveryAddress: location.state?.deliveryAddress || "123 Main St, City, Country"
+  });
+  
+  useEffect(() => {
+    // Clear cart only when component unmounts
+    return () => {
+      clearCart();
+    };
+  }, []); // Empty dependency array
 
   return (
     <div className="container mx-auto px-4 py-8">

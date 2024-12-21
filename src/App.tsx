@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Toaster } from "@/components/ui/toaster";
 import { CartProvider } from "@/contexts/CartContext";
 
@@ -13,6 +13,7 @@ import QuickMeals from "@/pages/QuickMeals";
 import Cart from "@/pages/Cart";
 import Checkout from "@/pages/Checkout";
 import OrderConfirmation from "@/pages/OrderConfirmation";
+import Orders from "@/pages/Orders";
 import ShopDetail from "@/pages/ShopDetail";
 
 // Admin pages
@@ -43,6 +44,7 @@ const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/order-confirmation" element={<OrderConfirmation />} />
+        <Route path="/orders" element={<Orders />} />
         
         {/* Admin routes */}
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
