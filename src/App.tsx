@@ -1,6 +1,4 @@
 import { BrowserRouter as Router, Routes, Route, useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Index from "@/pages/Index";
 import Cart from "@/pages/Cart";
@@ -13,6 +11,7 @@ import KiranaShopCard from "@/components/KiranaShopCard";
 import { CartProvider } from "@/contexts/CartContext";
 import { useCart } from "@/contexts/CartContext";
 import AdminDashboard from "@/pages/admin/Dashboard";
+import BackButton from "@/components/BackButton";
 
 function App() {
   return (
@@ -46,6 +45,7 @@ const CategoryPage = ({ title, category }: { title: string; category: string }) 
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <Navbar />
       <div className="container py-8">
+        <BackButton to="/" />
         <div className="space-y-8">
           <div className="text-center space-y-4">
             <h1 className="text-3xl font-bold">{title}</h1>
@@ -80,11 +80,8 @@ const ShopDetail = () => {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       <div className="container py-8">
+        <BackButton to={`/${category}`} label={`Back to ${category}`} />
         <div className="space-y-8">
-          <button onClick={() => navigate(`/${category}`)} className="flex items-center text-gray-600">
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to {category}
-          </button>
           <div>
             <h1 className="text-3xl font-bold">{shop.name}</h1>
             <p className="text-gray-500 mt-2">{shop.description}</p>

@@ -3,12 +3,14 @@ import { DashboardMetrics } from "@/components/admin/dashboard/DashboardMetrics"
 import { RecentOrders } from "@/components/admin/dashboard/RecentOrders";
 import { RevenueChart } from "@/components/admin/dashboard/RevenueChart";
 import { ActivityFeed } from "@/components/admin/dashboard/ActivityFeed";
+import BackButton from "@/components/BackButton";
 
 export default function AdminDashboard() {
   return (
     <div className="min-h-screen bg-gray-50">
       <AdminHeader />
       <main className="container mx-auto py-8 px-4">
+        <BackButton to="/" label="Back to Home" />
         <h1 className="text-3xl font-bold mb-8">Dashboard Overview</h1>
         <DashboardMetrics />
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
