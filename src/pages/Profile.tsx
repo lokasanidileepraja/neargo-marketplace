@@ -1,25 +1,41 @@
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-
-// Dummy data for testing
-const userProfile = {
-  name: "John Doe",
-  email: "john.doe@example.com",
-  phone: "9876543210",
-  address: "123 Main St, City, State, 12345"
-};
+import { LogOut } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const Profile = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await supabase.auth.signOut();
+      toast.success("Logged out successfully");
+      navigate("/login");
+    } catch (error) {
+      toast.error("Error logging out");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       <div className="container mx-auto px-4 py-8">
         <Card className="max-w-3xl mx-auto">
-          <CardHeader>
+          <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle>Profile Information</CardTitle>
+            <Button 
+              variant="destructive" 
+              onClick={handleLogout}
+              className="flex items-center gap-2"
+            >
+              <LogOut className="h-4 w-4" />
+              Logout
+            </Button>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-4">
@@ -28,7 +44,7 @@ const Profile = () => {
                   <Label htmlFor="name">Full Name</Label>
                   <Input
                     id="name"
-                    defaultValue={userProfile.name}
+                    defaultValue="John Doe"
                     className="max-w-md"
                   />
                 </div>
@@ -38,7 +54,7 @@ const Profile = () => {
                   <Input
                     id="email"
                     type="email"
-                    defaultValue={userProfile.email}
+                    defaultValue="john.doe@example.com"
                     className="max-w-md"
                   />
                 </div>
@@ -48,7 +64,7 @@ const Profile = () => {
                   <Input
                     id="phone"
                     type="tel"
-                    defaultValue={userProfile.phone}
+                    defaultValue="9876543210"
                     className="max-w-md"
                   />
                 </div>
@@ -57,7 +73,7 @@ const Profile = () => {
                   <Label htmlFor="address">Address</Label>
                   <Input
                     id="address"
-                    defaultValue={userProfile.address}
+                    defaultValue="123 Main St, City, State, 12345"
                     className="max-w-md"
                   />
                 </div>
