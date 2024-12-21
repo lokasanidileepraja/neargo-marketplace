@@ -66,9 +66,7 @@ const menuItems = [
   },
 ];
 
-export function AdminSidebar({ open }: AdminSidebarProps) {
-  if (!open) return null;
-  
+export function AdminSidebar() {
   return (
     <div className="fixed top-[64px] left-0 w-[300px] h-[calc(100vh-64px)] bg-white border-r overflow-y-auto z-50">
       <div className="p-6">
@@ -82,14 +80,12 @@ export function AdminSidebar({ open }: AdminSidebarProps) {
                 title={item.title}
                 icon={item.icon}
                 subItems={item.subItems}
-                onClose={() => {}}
               />
             ) : (
               <SidebarItem
                 title={item.title}
                 icon={item.icon}
                 href={item.href}
-                onClose={() => {}}
               />
             )}
           </div>

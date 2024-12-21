@@ -1,4 +1,5 @@
 import { AdminHeader } from "@/components/admin/AdminHeader";
+import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -59,9 +60,12 @@ export default function Orders() {
   return (
     <div className="min-h-screen bg-gray-50">
       <AdminHeader />
-      <main className="container mx-auto py-8 px-4">
-        <BackButton to="/admin" label="Back to Dashboard" />
-        <h1 className="text-3xl font-bold mb-8">Order Management</h1>
+      <div className="flex">
+        <AdminSidebar />
+        <main className="flex-1 p-6 ml-[300px]">
+          <div className="container mx-auto">
+            <BackButton to="/admin" label="Back to Dashboard" />
+            <h1 className="text-3xl font-bold mb-8">Order Management</h1>
 
         <Card className="mb-8">
           <CardHeader>
@@ -146,7 +150,9 @@ export default function Orders() {
             </div>
           </CardContent>
         </Card>
-      </main>
+          </div>
+        </main>
+      </div>
     </div>
   );
 }
