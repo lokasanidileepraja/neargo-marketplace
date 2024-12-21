@@ -10,9 +10,25 @@ const Login = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-    // Check if user is already logged in
-    supabase.auth.onAuthStateChange((event, session) => {
+    // Check current session on mount
+    const checkSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
       if (session) {
+        toast({
+          title: "Already logged in",
+          description: "Redirecting to home page",
+        });
+        navigate("/");
+      }
+    };
+    
+    checkSession();
+
+    // Listen for auth state changes
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(async (event, session) => {
+      if (event === "SIGNED_IN" && session) {
         toast({
           title: "Login successful",
           description: "Welcome back!",
@@ -20,6 +36,9 @@ const Login = () => {
         navigate("/");
       }
     });
+
+    // Cleanup subscription
+    return () => subscription.unsubscribe();
   }, [navigate, toast]);
 
   return (
@@ -43,6 +62,14 @@ const Login = () => {
           }}
           theme="light"
           providers={[]}
+          redirectTo={window.location.origin}
+          onError={(error) => {
+            toast({
+              title: "Error",
+              description: error.message,
+              variant: "destructive",
+            });
+          }}
         />
       </div>
     </div>
