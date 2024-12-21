@@ -1,10 +1,12 @@
 import { Outlet } from "react-router-dom";
 import { AdminHeader } from "./AdminHeader";
 import { AdminSidebar } from "./AdminSidebar";
+import Navbar from "../Navbar";
 
 export function AdminLayout() {
   return (
     <div className="min-h-screen bg-white">
+      <Navbar />
       <AdminHeader />
       <div className="flex">
         <AdminSidebar />
