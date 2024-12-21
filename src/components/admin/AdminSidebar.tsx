@@ -5,15 +5,15 @@ import {
   Truck,
   DollarSign,
   Settings,
-  ChevronRight,
 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
+import { SidebarItem } from "./sidebar/SidebarItem";
+import { SidebarGroup } from "./sidebar/SidebarGroup";
 
 interface AdminSidebarProps {
   open: boolean;
@@ -24,7 +24,7 @@ const menuItems = [
   {
     title: "Dashboard",
     icon: BarChart3,
-    href: "/admin",
+    href: "/admin/dashboard",
   },
   {
     title: "Orders",
@@ -73,13 +73,6 @@ const menuItems = [
 ];
 
 export function AdminSidebar({ open, onClose }: AdminSidebarProps) {
-  const navigate = useNavigate();
-
-  const handleNavigation = (href: string) => {
-    navigate(href);
-    onClose();
-  };
-
   return (
     <Sheet open={open} onOpenChange={onClose}>
       <SheetContent side="left" className="w-[300px] p-0">
@@ -90,34 +83,19 @@ export function AdminSidebar({ open, onClose }: AdminSidebarProps) {
           {menuItems.map((item) => (
             <div key={item.title} className="mb-2">
               {item.subItems ? (
-                <div>
-                  <div className="flex items-center gap-3 px-6 py-3 text-gray-700">
-                    <item.icon className="h-5 w-5" />
-                    <span className="font-medium">{item.title}</span>
-                  </div>
-                  <div className="ml-12 space-y-1">
-                    {item.subItems.map((subItem) => (
-                      <button
-                        key={subItem.href}
-                        onClick={() => handleNavigation(subItem.href)}
-                        className="w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-gray-100 transition-colors"
-                      >
-                        {subItem.title}
-                      </button>
-                    ))}
-                  </div>
-                </div>
+                <SidebarGroup
+                  title={item.title}
+                  icon={item.icon}
+                  subItems={item.subItems}
+                  onClose={onClose}
+                />
               ) : (
-                <button
-                  onClick={() => handleNavigation(item.href)}
-                  className="flex w-full items-center justify-between px-6 py-3 text-gray-700 hover:bg-gray-100 transition-colors"
-                >
-                  <div className="flex items-center gap-3">
-                    <item.icon className="h-5 w-5" />
-                    <span>{item.title}</span>
-                  </div>
-                  <ChevronRight className="h-5 w-5 text-gray-400" />
-                </button>
+                <SidebarItem
+                  title={item.title}
+                  icon={item.icon}
+                  href={item.href}
+                  onClose={onClose}
+                />
               )}
             </div>
           ))}

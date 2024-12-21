@@ -1,29 +1,29 @@
+import { useState } from "react";
+import { Menu } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { AdminHeader } from "@/components/admin/AdminHeader";
+import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { DashboardMetrics } from "@/components/admin/dashboard/DashboardMetrics";
 import { RecentOrders } from "@/components/admin/dashboard/RecentOrders";
 import { RevenueChart } from "@/components/admin/dashboard/RevenueChart";
 import { ActivityFeed } from "@/components/admin/dashboard/ActivityFeed";
 import BackButton from "@/components/BackButton";
-import { AdminSidebar } from "@/components/admin/AdminSidebar";
-import { useState } from "react";
-import { Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 export default function AdminDashboard() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-gray-50">
       <AdminHeader />
       <div className="flex">
         <AdminSidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-        <main className="flex-1">
-          <div className="container mx-auto py-8 px-4">
+        <main className="flex-1 p-6">
+          <div className="container mx-auto">
             <div className="flex items-center gap-4 mb-8">
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => setSidebarOpen(!sidebarOpen)}
+                onClick={() => setSidebarOpen(true)}
                 className="lg:hidden"
               >
                 <Menu className="h-6 w-6" />
