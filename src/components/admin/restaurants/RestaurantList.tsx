@@ -1,14 +1,18 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Star } from "lucide-react";
+import { Star, Edit2, Trash2 } from "lucide-react";
 import { Restaurant } from "@/types/restaurant";
+import { useToast } from "@/hooks/use-toast";
 
 interface RestaurantListProps {
   restaurants: Restaurant[];
   onEdit: (restaurant: Restaurant) => void;
+  onDelete?: (restaurant: Restaurant) => void;
 }
 
-export const RestaurantList = ({ restaurants, onEdit }: RestaurantListProps) => {
+export const RestaurantList = ({ restaurants, onEdit, onDelete }: RestaurantListProps) => {
+  const { toast } = useToast();
+  
   const getStatusBadgeClass = (status: string) => {
     return status === "verified"
       ? "bg-green-100 text-green-800"
@@ -19,6 +23,25 @@ export const RestaurantList = ({ restaurants, onEdit }: RestaurantListProps) => 
     return isOnline
       ? "bg-green-100 text-green-800"
       : "bg-red-100 text-red-800";
+  };
+
+  const handleEdit = (restaurant: Restaurant) => {
+    onEdit(restaurant);
+    toast({
+      title: "Edit Restaurant",
+      description: `Editing ${restaurant.name}`,
+    });
+  };
+
+  const handleDelete = (restaurant: Restaurant) => {
+    if (onDelete) {
+      onDelete(restaurant);
+      toast({
+        title: "Delete Restaurant",
+        description: `${restaurant.name} has been deleted`,
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -60,9 +83,24 @@ export const RestaurantList = ({ restaurants, onEdit }: RestaurantListProps) => 
               </span>
             </TableCell>
             <TableCell>
-              <Button variant="outline" size="sm" onClick={() => onEdit(restaurant)}>
-                Edit
-              </Button>
+              <div className="flex gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleEdit(restaurant)}
+                >
+                  <Edit2 className="w-4 h-4" />
+                </Button>
+                {onDelete && (
+                  <Button
+                    variant="destructive"
+                    size="sm"
+                    onClick={() => handleDelete(restaurant)}
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </Button>
+                )}
+              </div>
             </TableCell>
           </TableRow>
         ))}

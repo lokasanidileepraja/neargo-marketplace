@@ -1,3 +1,12 @@
+export interface MenuItem {
+  id: number;
+  name: string;
+  price: number;
+  description: string;
+  image: string;
+  category: string;
+}
+
 export interface Restaurant {
   id: number;
   name: string;
@@ -14,6 +23,7 @@ export interface Restaurant {
   closingHours: string;
   deliveryRadius: number;
   minimumOrder: number;
+  menu: MenuItem[];
   documents: {
     businessLicense: string;
     foodLicense: string;
