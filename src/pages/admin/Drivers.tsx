@@ -1,99 +1,137 @@
 import { AdminHeader } from "@/components/admin/AdminHeader";
 import { AdminSidebar } from "@/components/admin/AdminSidebar";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import BackButton from "@/components/BackButton";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Star, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+
+const dummyDrivers = [
+  {
+    id: 1,
+    name: "John Smith",
+    contactNumber: "+1234567890",
+    rating: 5,
+    documentStatus: "verified",
+    onlineStatus: "online",
+  },
+  {
+    id: 2,
+    name: "Jane Doe",
+    contactNumber: "+1987654321",
+    rating: 5,
+    documentStatus: "pending",
+    onlineStatus: "offline",
+  },
+];
 
 export default function Drivers() {
   const navigate = useNavigate();
 
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "verified":
+        return "bg-green-100 text-green-800";
+      case "pending":
+        return "bg-yellow-100 text-yellow-800";
+      default:
+        return "bg-gray-100 text-gray-800";
+    }
+  };
+
+  const getOnlineStatusColor = (status: string) => {
+    return status === "online" 
+      ? "bg-green-100 text-green-800" 
+      : "bg-red-100 text-red-800";
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#0B1120] text-white">
       <AdminHeader />
       <div className="flex">
         <AdminSidebar />
         <main className="flex-1 p-6 ml-[300px]">
           <div className="container mx-auto">
-            <BackButton to="/admin" label="Back to Dashboard" />
             <div className="flex justify-between items-center mb-8">
-              <h1 className="text-3xl font-bold">Driver Management</h1>
-              <Button onClick={() => navigate("/admin/drivers/add")}>Add New Driver</Button>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Total Drivers</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-3xl font-bold">89</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Active Now</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-3xl font-bold">45</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Pending Verification</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-3xl font-bold">12</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Average Rating</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-3xl font-bold">4.6</p>
-                </CardContent>
-              </Card>
+              <div>
+                <h1 className="text-3xl font-bold">Delivery Persons</h1>
+                <p className="text-gray-400 mt-2">
+                  Manage delivery personnel and their assignments
+                </p>
+              </div>
+              <Button 
+                onClick={() => navigate("/admin/drivers/add")}
+                className="bg-blue-500 hover:bg-blue-600"
+              >
+                + Add Delivery Person
+              </Button>
             </div>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>Drivers List</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Name</TableHead>
-                      <TableHead>Status</TableHead>
-                      <TableHead>Orders Today</TableHead>
-                      <TableHead>Rating</TableHead>
-                      <TableHead>Earnings Today</TableHead>
-                      <TableHead>Actions</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    <TableRow>
-                      <TableCell>John Smith</TableCell>
+            <div className="flex justify-between gap-4 mb-6">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                <Input
+                  placeholder="Search delivery persons..."
+                  className="pl-10 bg-transparent border-gray-700 text-white"
+                />
+              </div>
+              <Select defaultValue="all">
+                <SelectTrigger className="w-[180px] bg-transparent border-gray-700 text-white">
+                  <SelectValue placeholder="All Status" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Status</SelectItem>
+                  <SelectItem value="online">Online</SelectItem>
+                  <SelectItem value="offline">Offline</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="rounded-lg border border-gray-700 overflow-hidden">
+              <Table>
+                <TableHeader>
+                  <TableRow className="border-gray-700 hover:bg-transparent">
+                    <TableHead className="text-gray-400">Name</TableHead>
+                    <TableHead className="text-gray-400">Contact Number</TableHead>
+                    <TableHead className="text-gray-400">Rating</TableHead>
+                    <TableHead className="text-gray-400">Document Status</TableHead>
+                    <TableHead className="text-gray-400">Online Status</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {dummyDrivers.map((driver) => (
+                    <TableRow key={driver.id} className="border-gray-700 hover:bg-gray-800/50">
+                      <TableCell className="text-white">{driver.name}</TableCell>
+                      <TableCell className="text-white">{driver.contactNumber}</TableCell>
                       <TableCell>
-                        <span className="px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">
-                          Active
-                        </span>
-                      </TableCell>
-                      <TableCell>12</TableCell>
-                      <TableCell>4.8</TableCell>
-                      <TableCell>₹2,450</TableCell>
-                      <TableCell>
-                        <div className="flex gap-2">
-                          <Button variant="outline" size="sm">Track</Button>
-                          <Button variant="outline" size="sm">View Details</Button>
+                        <div className="flex gap-1">
+                          {[...Array(driver.rating)].map((_, i) => (
+                            <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                          ))}
                         </div>
                       </TableCell>
+                      <TableCell>
+                        <span className={`px-3 py-1 rounded-full text-xs ${getStatusColor(driver.documentStatus)}`}>
+                          {driver.documentStatus}
+                        </span>
+                      </TableCell>
+                      <TableCell>
+                        <span className={`px-3 py-1 rounded-full text-xs ${getOnlineStatusColor(driver.onlineStatus)}`}>
+                          {driver.onlineStatus}
+                        </span>
+                      </TableCell>
                     </TableRow>
-                  </TableBody>
-                </Table>
-              </CardContent>
-            </Card>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
           </div>
         </main>
       </div>
