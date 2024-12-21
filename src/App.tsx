@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AdminLayout } from "@/components/admin/AdminLayout";
 import Dashboard from "@/pages/admin/Dashboard";
 import Dispatcher from "@/pages/admin/Dispatcher";
 import Drivers from "@/pages/admin/Drivers";
@@ -15,17 +16,23 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/admin/dashboard" element={<Dashboard />} />
-        <Route path="/admin/dispatcher" element={<Dispatcher />} />
-        <Route path="/admin/drivers" element={<Drivers />} />
-        <Route path="/admin/orders" element={<Orders />} />
-        <Route path="/admin/restaurants" element={<Restaurants />} />
-        <Route path="/admin/finances" element={<Finances />} />
-        <Route path="/admin/promocodes" element={<Promocodes />} />
-        <Route path="/admin/reviews" element={<Reviews />} />
-        <Route path="/admin/documents" element={<Documents />} />
-        <Route path="/admin/settings" element={<Settings />} />
-        <Route path="/admin/pages" element={<Pages />} />
+        <Route path="/admin/*" element={
+          <AdminLayout>
+            <Routes>
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="dispatcher" element={<Dispatcher />} />
+              <Route path="drivers" element={<Drivers />} />
+              <Route path="orders" element={<Orders />} />
+              <Route path="restaurants" element={<Restaurants />} />
+              <Route path="finances" element={<Finances />} />
+              <Route path="promocodes" element={<Promocodes />} />
+              <Route path="reviews" element={<Reviews />} />
+              <Route path="documents" element={<Documents />} />
+              <Route path="settings" element={<Settings />} />
+              <Route path="pages" element={<Pages />} />
+            </Routes>
+          </AdminLayout>
+        } />
       </Routes>
     </Router>
   );
