@@ -1,6 +1,7 @@
 import { AdminHeader } from "@/components/admin/AdminHeader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import BackButton from "@/components/BackButton";
 import {
   Table,
   TableBody,
@@ -47,16 +48,15 @@ export default function Pages() {
 
   return (
     <div className="space-y-4">
+      <BackButton to="/" label="Back to Home" />
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold">Pages</h1>
-          <p className="text-gray-400 mt-2">
+          <h1 className="text-3xl font-bold text-black">Pages</h1>
+          <p className="text-gray-600 mt-2">
             Manage static pages and content
           </p>
         </div>
-        <Button 
-          className="bg-blue-500 hover:bg-blue-600"
-        >
+        <Button>
           + Add Page
         </Button>
       </div>
@@ -66,29 +66,29 @@ export default function Pages() {
           <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
           <Input
             placeholder="Search pages..."
-            className="pl-10 bg-transparent border-gray-700 text-white"
+            className="pl-10"
           />
         </div>
       </div>
 
-      <div className="rounded-lg border border-gray-700 overflow-hidden">
+      <div className="rounded-lg border">
         <Table>
           <TableHeader>
-            <TableRow className="hover:bg-gray-800 border-gray-700">
-              <TableHead className="text-gray-400">Title</TableHead>
-              <TableHead className="text-gray-400">Slug</TableHead>
-              <TableHead className="text-gray-400">Status</TableHead>
-              <TableHead className="text-gray-400">Last Modified</TableHead>
-              <TableHead className="text-gray-400">Actions</TableHead>
+            <TableRow>
+              <TableHead className="text-black">Title</TableHead>
+              <TableHead className="text-black">Slug</TableHead>
+              <TableHead className="text-black">Status</TableHead>
+              <TableHead className="text-black">Last Modified</TableHead>
+              <TableHead className="text-black">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {pages.map((page) => (
-              <TableRow key={page.slug} className="hover:bg-gray-800 border-gray-700">
-                <TableCell className="text-white font-medium">
+              <TableRow key={page.slug}>
+                <TableCell className="text-black font-medium">
                   {page.title}
                 </TableCell>
-                <TableCell className="text-gray-300">{page.slug}</TableCell>
+                <TableCell className="text-black">{page.slug}</TableCell>
                 <TableCell>
                   <span
                     className={`px-3 py-1 rounded-full text-xs ${getStatusColor(
@@ -98,7 +98,7 @@ export default function Pages() {
                     {page.status}
                   </span>
                 </TableCell>
-                <TableCell className="text-gray-300">
+                <TableCell className="text-black">
                   {page.lastModified}
                 </TableCell>
                 <TableCell>
@@ -106,14 +106,12 @@ export default function Pages() {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="hover:bg-gray-700"
                     >
-                      <Pencil className="h-4 w-4 text-gray-400" />
+                      <Pencil className="h-4 w-4" />
                     </Button>
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="hover:bg-gray-700"
                     >
                       <Trash2 className="h-4 w-4 text-red-400" />
                     </Button>

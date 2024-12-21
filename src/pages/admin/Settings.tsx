@@ -1,96 +1,102 @@
-import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { AdminHeader } from "@/components/admin/AdminHeader";
 import BackButton from "@/components/BackButton";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function Settings() {
   return (
     <div className="space-y-4">
       <BackButton to="/" label="Back to Home" />
-      <h1 className="text-3xl font-bold">Platform Settings</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div>
+        <h2 className="text-3xl font-bold tracking-tight">Settings</h2>
+        <p className="text-muted-foreground">
+          Manage application settings and configurations
+        </p>
+      </div>
+
+      <Tabs defaultValue="general" className="space-y-4">
+        <TabsList>
+          <TabsTrigger value="general">General</TabsTrigger>
+          <TabsTrigger value="notifications">Notifications</TabsTrigger>
+          <TabsTrigger value="security">Security</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="general" className="space-y-4">
           <Card>
             <CardHeader>
               <CardTitle>General Settings</CardTitle>
+              <CardDescription>
+                Configure general application settings
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div>
-                <label className="text-sm font-medium">Platform Name</label>
-                <Input defaultValue="NearGo" />
+              <div className="space-y-2">
+                <Label htmlFor="site-name">Site Name</Label>
+                <Input id="site-name" defaultValue="Food Delivery Admin" />
               </div>
-              <div>
-                <label className="text-sm font-medium">Support Email</label>
-                <Input type="email" defaultValue="support@neargo.com" />
+              <div className="space-y-2">
+                <Label htmlFor="contact-email">Contact Email</Label>
+                <Input id="contact-email" type="email" defaultValue="admin@example.com" />
               </div>
-              <div>
-                <label className="text-sm font-medium">Contact Phone</label>
-                <Input type="tel" defaultValue="+1234567890" />
+              <div className="flex items-center space-x-2">
+                <Switch id="maintenance-mode" />
+                <Label htmlFor="maintenance-mode">Maintenance Mode</Label>
               </div>
-              <Button>Save Changes</Button>
             </CardContent>
           </Card>
+        </TabsContent>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Commission Settings</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div>
-                <label className="text-sm font-medium">Restaurant Commission (%)</label>
-                <Input type="number" defaultValue="15" />
-              </div>
-              <div>
-                <label className="text-sm font-medium">Driver Commission (%)</label>
-                <Input type="number" defaultValue="10" />
-              </div>
-              <Button>Update Commission Rates</Button>
-            </CardContent>
-          </Card>
-
+        <TabsContent value="notifications" className="space-y-4">
           <Card>
             <CardHeader>
               <CardTitle>Notification Settings</CardTitle>
+              <CardDescription>
+                Manage your notification preferences
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div>
-                <label className="text-sm font-medium">Email Notifications</label>
-                <div className="space-y-2">
-                  <div className="flex items-center">
-                    <input type="checkbox" className="mr-2" defaultChecked />
-                    <span>New Order Notifications</span>
-                  </div>
-                  <div className="flex items-center">
-                    <input type="checkbox" className="mr-2" defaultChecked />
-                    <span>Daily Reports</span>
-                  </div>
-                  <div className="flex items-center">
-                    <input type="checkbox" className="mr-2" defaultChecked />
-                    <span>Restaurant Updates</span>
-                  </div>
-                </div>
+              <div className="flex items-center space-x-2">
+                <Switch id="email-notifications" defaultChecked />
+                <Label htmlFor="email-notifications">Email Notifications</Label>
               </div>
-              <Button>Save Notification Preferences</Button>
+              <div className="flex items-center space-x-2">
+                <Switch id="push-notifications" defaultChecked />
+                <Label htmlFor="push-notifications">Push Notifications</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Switch id="order-updates" defaultChecked />
+                <Label htmlFor="order-updates">Order Updates</Label>
+              </div>
             </CardContent>
           </Card>
+        </TabsContent>
 
+        <TabsContent value="security" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle>Delivery Zones</CardTitle>
+              <CardTitle>Security Settings</CardTitle>
+              <CardDescription>
+                Configure security and authentication settings
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div>
-                <label className="text-sm font-medium">Default Delivery Radius (km)</label>
-                <Input type="number" defaultValue="5" />
+              <div className="flex items-center space-x-2">
+                <Switch id="two-factor" />
+                <Label htmlFor="two-factor">Two-Factor Authentication</Label>
               </div>
-              <div>
-                <label className="text-sm font-medium">Maximum Delivery Distance (km)</label>
-                <Input type="number" defaultValue="10" />
+              <div className="space-y-2">
+                <Label htmlFor="session-timeout">Session Timeout (minutes)</Label>
+                <Input id="session-timeout" type="number" defaultValue="30" />
               </div>
-              <Button>Update Delivery Zones</Button>
+              <Button variant="outline">Reset Security Settings</Button>
             </CardContent>
           </Card>
-      </div>
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }
