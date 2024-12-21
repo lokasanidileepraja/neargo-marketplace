@@ -1,42 +1,11 @@
-import { Search, MapPin } from "lucide-react";
+import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { useToast } from "@/components/ui/use-toast";
 import SearchResults from "./SearchResults";
+import LocationButton from "./LocationButton";
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const { toast } = useToast();
-
-  const handleLocationClick = () => {
-    if (!navigator.geolocation) {
-      toast({
-        title: "Error",
-        description: "Geolocation is not supported by your browser",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const { latitude, longitude } = position.coords;
-        // For now, we'll just show the coordinates in a toast
-        toast({
-          title: "Location found",
-          description: `Lat: ${latitude.toFixed(4)}, Long: ${longitude.toFixed(4)}`,
-        });
-      },
-      (error) => {
-        toast({
-          title: "Error",
-          description: error.message,
-          variant: "destructive",
-        });
-      }
-    );
-  };
 
   return (
     <div className="relative w-full max-w-xl mx-auto">
@@ -55,14 +24,7 @@ const SearchBar = () => {
             onSelect={() => setSearchTerm("")}
           />
         </div>
-        <Button
-          variant="outline"
-          size="icon"
-          className="h-12 w-12 rounded-full"
-          onClick={handleLocationClick}
-        >
-          <MapPin className="h-5 w-5" />
-        </Button>
+        <LocationButton />
       </div>
     </div>
   );
