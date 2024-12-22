@@ -1,4 +1,4 @@
-import { Home } from "lucide-react";
+import { Home, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { SidebarItem } from "../sidebar/SidebarItem";
 import { adminMenuItems } from "./adminMenuItems";
