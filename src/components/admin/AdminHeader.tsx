@@ -12,8 +12,8 @@ export function AdminHeader({ title, description }: AdminHeaderProps) {
   return (
     <div className="space-y-4">
       <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-        <div className="flex h-14 items-center px-6">
-          <div className="flex flex-1 items-center gap-4">
+        <div className="flex flex-col sm:flex-row h-auto sm:h-14 items-start sm:items-center px-4 sm:px-6 py-3 sm:py-0 gap-3 sm:gap-4">
+          <div className="flex flex-1 items-center gap-4 w-full">
             <div className="relative w-full max-w-sm">
               <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-400" />
               <Input
@@ -23,7 +23,7 @@ export function AdminHeader({ title, description }: AdminHeaderProps) {
               />
             </div>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 ml-auto">
             <Button
               variant="ghost"
               size="icon"
@@ -41,9 +41,9 @@ export function AdminHeader({ title, description }: AdminHeaderProps) {
         </div>
       </header>
       {(title || description) && (
-        <div className="px-6">
-          {title && <h1 className="text-2xl font-semibold tracking-tight text-gray-900">{title}</h1>}
-          {description && <p className="text-gray-600">{description}</p>}
+        <div className="px-4 sm:px-6">
+          {title && <h1 className="text-xl sm:text-2xl font-semibold tracking-tight text-gray-900">{title}</h1>}
+          {description && <p className="text-sm sm:text-base text-gray-600">{description}</p>}
         </div>
       )}
     </div>
