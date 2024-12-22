@@ -13,8 +13,8 @@ export function AdminLayout() {
       <AdminHeader />
       <div className="flex relative">
         <AdminSidebar />
-        <main className={`flex-1 p-6 ${!isMobile ? 'ml-[300px]' : ''} overflow-x-auto min-w-0`}>
-          <div className="min-w-[768px]">
+        <main className={`flex-1 p-4 sm:p-6 ${!isMobile ? 'ml-[300px]' : ''}`}>
+          <div className="w-full min-w-0 overflow-x-auto">
             <Outlet />
           </div>
         </main>

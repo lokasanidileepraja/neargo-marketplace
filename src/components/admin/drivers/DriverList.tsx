@@ -50,60 +50,62 @@ export function DriverList() {
   };
 
   return (
-    <Table>
-      <TableHeader>
-        <TableRow className="bg-gray-50/50">
-          <TableHead className="font-semibold">Name</TableHead>
-          <TableHead className="font-semibold">Phone</TableHead>
-          <TableHead className="font-semibold">Status</TableHead>
-          <TableHead className="font-semibold">Online Status</TableHead>
-          <TableHead className="font-semibold">Rating</TableHead>
-          <TableHead className="font-semibold">Earnings</TableHead>
-          <TableHead className="font-semibold text-right">Actions</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {dummyDrivers.map((driver) => (
-          <TableRow key={driver.id} className="hover:bg-gray-50/50">
-            <TableCell className="font-medium">{driver.name}</TableCell>
-            <TableCell>{driver.phone}</TableCell>
-            <TableCell>
-              <Badge variant="secondary" className={getStatusColor(driver.status)}>
-                {driver.status}
-              </Badge>
-            </TableCell>
-            <TableCell>
-              <Badge variant="secondary" className={getOnlineStatusColor(driver.onlineStatus)}>
-                {driver.onlineStatus}
-              </Badge>
-            </TableCell>
-            <TableCell>
-              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                ★ {driver.rating}
-              </span>
-            </TableCell>
-            <TableCell>{driver.earnings}</TableCell>
-            <TableCell className="text-right">
-              <div className="flex justify-end gap-2">
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  className="hover:bg-gray-100"
-                >
-                  <Edit2 className="h-4 w-4" />
-                </Button>
-                <Button 
-                  variant="destructive" 
-                  size="sm"
-                  className="hover:bg-red-600"
-                >
-                  <Trash2 className="h-4 w-4" />
-                </Button>
-              </div>
-            </TableCell>
+    <div className="w-full overflow-x-auto">
+      <Table>
+        <TableHeader>
+          <TableRow className="bg-gray-50/50">
+            <TableHead className="font-semibold whitespace-nowrap">Name</TableHead>
+            <TableHead className="font-semibold whitespace-nowrap">Phone</TableHead>
+            <TableHead className="font-semibold whitespace-nowrap">Status</TableHead>
+            <TableHead className="font-semibold whitespace-nowrap">Online Status</TableHead>
+            <TableHead className="font-semibold whitespace-nowrap">Rating</TableHead>
+            <TableHead className="font-semibold whitespace-nowrap">Earnings</TableHead>
+            <TableHead className="font-semibold text-right whitespace-nowrap">Actions</TableHead>
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+        </TableHeader>
+        <TableBody>
+          {dummyDrivers.map((driver) => (
+            <TableRow key={driver.id} className="hover:bg-gray-50/50">
+              <TableCell className="font-medium whitespace-nowrap">{driver.name}</TableCell>
+              <TableCell className="whitespace-nowrap">{driver.phone}</TableCell>
+              <TableCell>
+                <Badge variant="secondary" className={`whitespace-nowrap ${getStatusColor(driver.status)}`}>
+                  {driver.status}
+                </Badge>
+              </TableCell>
+              <TableCell>
+                <Badge variant="secondary" className={`whitespace-nowrap ${getOnlineStatusColor(driver.onlineStatus)}`}>
+                  {driver.onlineStatus}
+                </Badge>
+              </TableCell>
+              <TableCell>
+                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 whitespace-nowrap">
+                  ★ {driver.rating}
+                </span>
+              </TableCell>
+              <TableCell className="whitespace-nowrap">{driver.earnings}</TableCell>
+              <TableCell className="text-right">
+                <div className="flex justify-end gap-2">
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    className="hover:bg-gray-100"
+                  >
+                    <Edit2 className="h-4 w-4" />
+                  </Button>
+                  <Button 
+                    variant="destructive" 
+                    size="sm"
+                    className="hover:bg-red-600"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
+                </div>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
   );
 }
