@@ -17,6 +17,8 @@ const CategoryCard = ({ title, icon, description, path }: CategoryCardProps) => 
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       transition={{ type: "spring", stiffness: 300 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
     >
       <Card 
         className="group p-6 cursor-pointer hover:shadow-lg transition-all duration-300 bg-white border border-gray-100 hover:border-primary/20"
@@ -43,4 +45,5 @@ const CategoryCard = ({ title, icon, description, path }: CategoryCardProps) => 
   );
 };
 
+// No need to memoize CategoryCard since it receives props that change
 export default CategoryCard;

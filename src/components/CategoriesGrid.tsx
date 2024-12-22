@@ -39,7 +39,7 @@ export const categories = [
     description: "Fast and convenient options",
     path: "/quick-meals"
   }
-];
+] as const;
 
 const CategoriesGrid = () => {
   return (
@@ -51,4 +51,5 @@ const CategoriesGrid = () => {
   );
 };
 
+// Memoize the component since categories are static
 export default memo(CategoriesGrid);
