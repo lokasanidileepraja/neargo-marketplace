@@ -1,4 +1,4 @@
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -34,7 +34,7 @@ export function AdminSidebar() {
   }
 
   return (
-    <div className="fixed top-0 left-0 w-[300px] h-screen bg-white border-r border-gray-200 overflow-y-auto shadow-sm">
+    <div className="fixed top-14 left-0 w-[300px] h-[calc(100vh-56px)] bg-white border-r border-gray-200 overflow-y-auto shadow-sm">
       <AdminSidebarContent />
     </div>
   );
