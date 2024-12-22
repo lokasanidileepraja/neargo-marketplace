@@ -5,10 +5,10 @@ interface SidebarItemProps {
   title: string;
   icon: LucideIcon;
   href?: string;
-  onClose?: () => void;
+  onClick?: () => void;  // Added onClick prop to the interface
 }
 
-export function SidebarItem({ title, icon: Icon, href }: SidebarItemProps) {
+export function SidebarItem({ title, icon: Icon, href, onClick }: SidebarItemProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const isActive = location.pathname === href;
@@ -16,6 +16,9 @@ export function SidebarItem({ title, icon: Icon, href }: SidebarItemProps) {
   const handleClick = () => {
     if (href) {
       navigate(href);
+    }
+    if (onClick) {
+      onClick();
     }
   };
 
