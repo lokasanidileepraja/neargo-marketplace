@@ -34,58 +34,61 @@ import VendorOrders from './pages/vendor/Orders';
 import VendorProducts from './pages/vendor/Products';
 import VendorAnalytics from './pages/vendor/Analytics';
 import VendorSettings from './pages/vendor/Settings';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/food-delivery" element={<FoodDelivery />} />
-      <Route path="/food-delivery/:id" element={<ShopDetail />} />
-      <Route path="/groceries" element={<Groceries />} />
-      <Route path="/groceries/:id" element={<ShopDetail />} />
-      <Route path="/pharmacy" element={<Pharmacy />} />
-      <Route path="/pharmacy/:id" element={<ShopDetail />} />
-      <Route path="/healthy-options" element={<HealthyOptions />} />
-      <Route path="/healthy-options/:id" element={<ShopDetail />} />
-      <Route path="/quick-meals" element={<QuickMeals />} />
-      <Route path="/quick-meals/:id" element={<ShopDetail />} />
-      <Route path="/local-favorites" element={<LocalFavorites />} />
-      <Route path="/local-favorites/:id" element={<ShopDetail />} />
-      <Route path="/cart" element={<Cart />} />
-      <Route path="/menu" element={<Menu />} />
-      <Route path="/restaurant-menu" element={<RestaurantMenu />} />
-      <Route path="/shop/:id" element={<ShopDetail />} />
-      <Route path="/checkout" element={<Checkout />} />
-      <Route path="/orders" element={<Orders />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/order-success" element={<OrderSuccess />} />
-      
-      {/* Admin Routes */}
-      <Route path="/admin" element={<AdminLayout />}>
-        <Route index element={<AdminDashboard />} />
-        <Route path="dashboard" element={<AdminDashboard />} />
-        <Route path="dispatcher" element={<AdminDispatcher />} />
-        <Route path="drivers" element={<AdminDrivers />} />
-        <Route path="orders" element={<AdminOrders />} />
-        <Route path="restaurants" element={<AdminRestaurants />} />
-        <Route path="finances" element={<AdminFinances />} />
-        <Route path="promocodes" element={<AdminPromocodes />} />
-        <Route path="reviews" element={<AdminReviews />} />
-        <Route path="documents" element={<AdminDocuments />} />
-        <Route path="settings" element={<AdminSettings />} />
-        <Route path="pages" element={<AdminPages />} />
-      </Route>
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/food-delivery" element={<FoodDelivery />} />
+        <Route path="/food-delivery/:id" element={<ShopDetail />} />
+        <Route path="/groceries" element={<Groceries />} />
+        <Route path="/groceries/:id" element={<ShopDetail />} />
+        <Route path="/pharmacy" element={<Pharmacy />} />
+        <Route path="/pharmacy/:id" element={<ShopDetail />} />
+        <Route path="/healthy-options" element={<HealthyOptions />} />
+        <Route path="/healthy-options/:id" element={<ShopDetail />} />
+        <Route path="/quick-meals" element={<QuickMeals />} />
+        <Route path="/quick-meals/:id" element={<ShopDetail />} />
+        <Route path="/local-favorites" element={<LocalFavorites />} />
+        <Route path="/local-favorites/:id" element={<ShopDetail />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/restaurant-menu" element={<RestaurantMenu />} />
+        <Route path="/shop/:id" element={<ShopDetail />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/orders" element={<Orders />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/order-success" element={<OrderSuccess />} />
+        
+        {/* Admin Routes */}
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<AdminDashboard />} />
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="dispatcher" element={<AdminDispatcher />} />
+          <Route path="drivers" element={<AdminDrivers />} />
+          <Route path="orders" element={<AdminOrders />} />
+          <Route path="restaurants" element={<AdminRestaurants />} />
+          <Route path="finances" element={<AdminFinances />} />
+          <Route path="promocodes" element={<AdminPromocodes />} />
+          <Route path="reviews" element={<AdminReviews />} />
+          <Route path="documents" element={<AdminDocuments />} />
+          <Route path="settings" element={<AdminSettings />} />
+          <Route path="pages" element={<AdminPages />} />
+        </Route>
 
-      {/* Vendor Routes */}
-      <Route path="/vendor" element={<VendorLayout />}>
-        <Route index element={<VendorDashboard />} />
-        <Route path="dashboard" element={<VendorDashboard />} />
-        <Route path="orders" element={<VendorOrders />} />
-        <Route path="products" element={<VendorProducts />} />
-        <Route path="analytics" element={<VendorAnalytics />} />
-        <Route path="settings" element={<VendorSettings />} />
-      </Route>
-    </Routes>
+        {/* Vendor Routes */}
+        <Route path="/vendor" element={<VendorLayout />}>
+          <Route index element={<VendorDashboard />} />
+          <Route path="dashboard" element={<VendorDashboard />} />
+          <Route path="orders" element={<VendorOrders />} />
+          <Route path="products" element={<VendorProducts />} />
+          <Route path="analytics" element={<VendorAnalytics />} />
+          <Route path="settings" element={<VendorSettings />} />
+        </Route>
+      </Routes>
+    </>
   );
 }
 

@@ -81,7 +81,7 @@ const menuItems = [
 export function AdminSidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const isMobile = useIsMobile();
-
+  
   const toggleSidebar = () => setIsOpen(!isOpen);
 
   const sidebarContent = (
@@ -121,7 +121,7 @@ export function AdminSidebar() {
         <Button
           variant="ghost"
           size="icon"
-          className="fixed top-20 left-4 z-50"
+          className="fixed top-4 left-4 z-50"
           onClick={toggleSidebar}
         >
           <Menu className="h-6 w-6" />
@@ -139,7 +139,7 @@ export function AdminSidebar() {
   }
 
   return (
-    <div className="fixed top-[120px] left-0 w-[300px] h-[calc(100vh-120px)] bg-white border-r border-gray-200 overflow-y-auto shadow-sm">
+    <div className="fixed top-0 left-0 w-[300px] h-screen bg-white border-r border-gray-200 overflow-y-auto shadow-sm">
       {sidebarContent}
     </div>
   );
