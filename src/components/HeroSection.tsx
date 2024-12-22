@@ -11,7 +11,6 @@ const HeroSection = () => {
           <source
             srcSet="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=1200&h=400&fit=crop&auto=format&q=80"
             media="(min-width: 640px)"
-            fetchPriority="high"
           />
           <source 
             srcSet="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=800&h=300&fit=crop&auto=format&q=80"
