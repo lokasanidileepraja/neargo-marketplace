@@ -99,3 +99,17 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .container-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+  
+  .section-spacing {
+    @apply py-8 sm:py-12 lg:py-16;
+  }
+  
+  .card-grid {
+    @apply grid gap-4 sm:gap-6 lg:gap-8;
+  }
+}

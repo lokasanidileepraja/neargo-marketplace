@@ -1,5 +1,6 @@
 import { ShoppingBag, Store, Package, Pill, Heart, Leaf, Clock } from "lucide-react";
 import CategoryCard from "./CategoryCard";
+import { memo } from "react";
 
 export const categories = [
   {
@@ -42,7 +43,7 @@ export const categories = [
 
 const CategoriesGrid = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
       {categories.map((category) => (
         <CategoryCard key={category.title} {...category} />
       ))}
@@ -50,4 +51,5 @@ const CategoriesGrid = () => {
   );
 };
 
-export default CategoriesGrid;
+// Memoize the component since categories don't change
+export default memo(CategoriesGrid);
