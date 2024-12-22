@@ -10,10 +10,10 @@ export function AdminLayout() {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      <AdminHeader />
       <div className="flex relative">
         <AdminSidebar />
         <main className={`flex-1 p-4 sm:p-6 ${!isMobile ? 'ml-[300px]' : ''}`}>
+          <AdminHeader />
           <div className="w-full min-w-0">
             <Outlet />
           </div>
