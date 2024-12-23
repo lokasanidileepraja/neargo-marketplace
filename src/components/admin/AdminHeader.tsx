@@ -38,6 +38,7 @@ export function AdminHeader({ title, description }: AdminHeaderProps) {
         <div className="flex items-center gap-4">
           <div className="flex items-center">
             <img src="/neargo-logo.png" alt="NearGo" className="h-8 w-auto" />
+            <span className="ml-2 text-xl font-bold text-[#F97316]">NearGo</span>
           </div>
           {(title || description) && (
             <div>
