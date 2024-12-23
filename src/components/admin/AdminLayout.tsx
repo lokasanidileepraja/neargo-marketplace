@@ -7,12 +7,12 @@ export function AdminLayout() {
   const isMobile = useIsMobile();
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gray-50">
       <AdminHeader />
       <div className="flex relative">
         <AdminSidebar />
         <main className={`flex-1 p-4 sm:p-6 ${!isMobile ? 'ml-[300px]' : ''}`}>
-          <div className="w-full min-w-0">
+          <div className="mx-auto max-w-7xl">
             <Outlet />
           </div>
         </main>
