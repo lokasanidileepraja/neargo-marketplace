@@ -1,8 +1,0 @@
-dependencies:
-  flutter:
-    sdk: flutter
-
-  carousel_pro:
-    git:
-      url: https://github.com/jlouage/flutter-carousel-pro.git
-      ref: main # branch name
