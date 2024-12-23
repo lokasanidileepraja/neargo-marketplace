@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ShoppingCart, Bell, User, Settings, Store, Menu } from "lucide-react";
+import { ShoppingCart, Bell, User, Settings, Store, Menu, Heart, MapPin, CreditCard, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
 import {
@@ -128,13 +128,51 @@ const Navbar = () => {
                     <User className="h-5 w-5 text-gray-600" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-48 bg-white">
+                <DropdownMenuContent align="end" className="w-56 bg-white">
                   <DropdownMenuItem>
                     <Link to="/profile" className="flex items-center gap-2 w-full">
                       <User className="h-4 w-4" />
                       Profile
                     </Link>
                   </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link to="/orders" className="flex items-center gap-2 w-full">
+                      <ShoppingCart className="h-4 w-4" />
+                      Orders
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link to="/favorites" className="flex items-center gap-2 w-full">
+                      <Heart className="h-4 w-4" />
+                      Favorites
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link to="/address-book" className="flex items-center gap-2 w-full">
+                      <MapPin className="h-4 w-4" />
+                      Address Book
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link to="/payment-methods" className="flex items-center gap-2 w-full">
+                      <CreditCard className="h-4 w-4" />
+                      Payment Methods
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    <Link to="/settings" className="flex items-center gap-2 w-full">
+                      <Settings className="h-4 w-4" />
+                      Settings
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link to="/support" className="flex items-center gap-2 w-full">
+                      <HelpCircle className="h-4 w-4" />
+                      Support
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
                   <DropdownMenuItem>
                     <Link to="/admin/dashboard" className="flex items-center gap-2 w-full">
                       <Settings className="h-4 w-4" />

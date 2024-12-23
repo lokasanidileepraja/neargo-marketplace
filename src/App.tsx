@@ -35,8 +35,32 @@ import VendorProducts from './pages/vendor/Products';
 import VendorAnalytics from './pages/vendor/Analytics';
 import VendorSettings from './pages/vendor/Settings';
 import Navbar from './components/Navbar';
+import NotFound from './pages/NotFound';
+import UserSettings from './pages/UserSettings';
+import Notifications from './pages/Notifications';
+import Support from './pages/Support';
+import FAQ from './pages/FAQ';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
+import RestaurantRegistration from './pages/RestaurantRegistration';
+import DriverRegistration from './pages/DriverRegistration';
+import TrackOrder from './pages/TrackOrder';
+import Reviews from './pages/Reviews';
+import Favorites from './pages/Favorites';
+import AddressBook from './pages/AddressBook';
+import PaymentMethods from './pages/PaymentMethods';
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setIsAuthenticated(!!session);
+    };
+    checkAuth();
+  }, []);
+
   return (
     <>
       <Routes>
@@ -59,8 +83,21 @@ function App() {
         <Route path="/shop/:id" element={<ShopDetail />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/orders" element={<Orders />} />
+        <Route path="/track-order/:id" element={<TrackOrder />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/order-success" element={<OrderSuccess />} />
+        <Route path="/settings" element={<UserSettings />} />
+        <Route path="/notifications" element={<Notifications />} />
+        <Route path="/support" element={<Support />} />
+        <Route path="/faq" element={<FAQ />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route path="/restaurant-registration" element={<RestaurantRegistration />} />
+        <Route path="/driver-registration" element={<DriverRegistration />} />
+        <Route path="/reviews" element={<Reviews />} />
+        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/address-book" element={<AddressBook />} />
+        <Route path="/payment-methods" element={<PaymentMethods />} />
         
         {/* Admin Routes */}
         <Route path="/admin" element={<AdminLayout />}>
@@ -87,6 +124,9 @@ function App() {
           <Route path="analytics" element={<VendorAnalytics />} />
           <Route path="settings" element={<VendorSettings />} />
         </Route>
+
+        {/* 404 Route */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
