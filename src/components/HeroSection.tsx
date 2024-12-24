@@ -42,5 +42,4 @@ const HeroSection = () => {
   );
 };
 
-// Memoize the component since its props don't change
 export default memo(HeroSection);

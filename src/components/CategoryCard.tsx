@@ -21,7 +21,7 @@ const CategoryCard = ({ title, icon, description, path }: CategoryCardProps) => 
       animate={{ opacity: 1, y: 0 }}
     >
       <Card 
-        className="group p-6 cursor-pointer hover:shadow-lg transition-all duration-300 bg-white border border-gray-100 hover:border-primary/20"
+        className="group p-6 cursor-pointer hover:shadow-lg transition-all duration-300 bg-white border border-gray-100 hover:border-primary/20 text-center"
         onClick={() => navigate(path)}
         role="button"
         tabIndex={0}
@@ -31,7 +31,7 @@ const CategoryCard = ({ title, icon, description, path }: CategoryCardProps) => 
           }
         }}
       >
-        <div className="flex flex-col items-center text-center gap-4">
+        <div className="flex flex-col items-center gap-4">
           <div className="p-4 bg-primary/10 rounded-full group-hover:scale-110 transition-transform duration-300">
             {icon}
           </div>
@@ -45,5 +45,4 @@ const CategoryCard = ({ title, icon, description, path }: CategoryCardProps) => 
   );
 };
 
-// No need to memoize CategoryCard since it receives props that change
 export default CategoryCard;
