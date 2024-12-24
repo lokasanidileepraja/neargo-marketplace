@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import '../../responsive.dart';
+import '../../constants/constants.dart';
 import '../../widgets/admin/dashboard_metrics.dart';
 import '../../widgets/admin/recent_orders.dart';
 import '../../widgets/admin/activity_feed.dart';
+import 'components/header.dart';
+import 'components/side_menu.dart';
 
 class AdminDashboard extends StatelessWidget {
   const AdminDashboard({super.key});
@@ -9,73 +13,44 @@ class AdminDashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'NearGo',
-          style: TextStyle(
-            color: Colors.orange,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications_outlined),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.person_outline),
-            onPressed: () {},
-          ),
-        ],
-      ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(color: Colors.orange),
-              child: Text(
-                'Admin Dashboard',
-                style: TextStyle(color: Colors.white, fontSize: 24),
-              ),
-            ),
-            ListTile(
-              leading: const Icon(Icons.dashboard),
-              title: const Text('Dashboard'),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: const Icon(Icons.restaurant),
-              title: const Text('Restaurants'),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: const Icon(Icons.delivery_dining),
-              title: const Text('Drivers'),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: const Icon(Icons.people),
-              title: const Text('Users'),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('Settings'),
-              onTap: () {},
-            ),
-          ],
-        ),
-      ),
-      body: const SingleChildScrollView(
-        padding: EdgeInsets.all(16),
-        child: Column(
+      drawer: const SideMenu(),
+      body: SafeArea(
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            DashboardMetrics(),
-            SizedBox(height: 24),
-            RecentOrders(),
-            SizedBox(height: 24),
-            ActivityFeed(),
+            // We want this side menu only for large screen
+            if (Responsive.isDesktop(context))
+              const Expanded(
+                // default flex = 1
+                // and it takes 1/6 part of the screen
+                child: SideMenu(),
+              ),
+            Expanded(
+              // It takes 5/6 part of the screen
+              flex: 5,
+              child: Column(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(defaultPadding),
+                    child: Header(),
+                  ),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.all(defaultPadding),
+                      child: Column(
+                        children: const [
+                          DashboardMetrics(),
+                          SizedBox(height: defaultPadding),
+                          RecentOrders(),
+                          SizedBox(height: defaultPadding),
+                          ActivityFeed(),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
